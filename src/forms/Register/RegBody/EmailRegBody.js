@@ -1,8 +1,12 @@
 import React from 'react';
+import Errors from '../../../components/Errors/Errors';
 
 function EmailRegBody() {
   return (
       <div>
+          <Errors title='Check your email address.'>
+              Kindly check the information you have submitted and try again.
+          </Errors>
           <form>
               <div>
                   <input type='text'
