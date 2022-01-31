@@ -1,8 +1,8 @@
 import './App.css'
-import Home from './Home.jsx'
+import Register from './forms/Register/Register'
 
 function App() {
-  return <Home />
+  return <Register />
 }
 
 export default App
