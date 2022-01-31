@@ -1,14 +1,14 @@
 import React from 'react';
-import RegHeader from './RegHeader/RegHeader';
-import RegBody from './RegBody/RegBody';
-import RegFooter from './RegFooter/RegFooter';
+import EmailRegHeader from './RegHeader/EmailRegHeader';
+import EmailRegBody from './RegBody/EmailRegBody';
+import EmailRegFooter from './RegFooter/EmailRegFooter';
 
 function Register() {
   return (
       <>
-        <RegHeader/>
-        <RegBody/>
-        <RegFooter/>
+        <EmailRegHeader/>
+        <EmailRegBody/>
+        <EmailRegFooter/>
       </>
   );
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 
-function RegHeader() {
+function EmailRegHeader() {
   return (
       <header>
           <div>
@@ -14,4 +14,4 @@ function RegHeader() {
   );
 }
 
-export default RegHeader;
+export default EmailRegHeader;
