@@ -1,8 +1,9 @@
 import './App.css'
-import Register from './forms/Register/Register'
+// import Register from './forms/Register/Register'
+import Home from './Home'
 
 function App() {
-  return <Register />
+  return <Home />
 }
 
 export default App
