@@ -3,7 +3,6 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { userRegistration } from './../../api/api-auth';
 import RegHeader from './RegComponents/RegHeader';
-import RegBody from './RegComponents/RegBody';
 import RegFooter from './RegComponents/RegFooter';
 import Errors from '../../components/Errors/Errors';
 
@@ -11,9 +10,12 @@ function Register() {
   // Set input & error message states
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [passwordConfirmation, setPwConfirmation] = useState('')
+  const [password_confirmation, setPwConfirmation] = useState('')
   const [hasError, setHasError] = useState(false)
 
+  // Declare variable for useNavigate
+  let navigate = useNavigate();
+  
   // Reset function
   const reset = () => {
     setEmail('');
@@ -24,12 +26,15 @@ function Register() {
   // Create user account upon registration
   const createUser = e => {
     e.preventDefault();
-    setEmail(e.target.value);
-    const userDetails = {email, password, passwordConfirmation}
+    
+    // Create object with new user details
+    const userDetails = {email, password, password_confirmation}
+
+    // Invoke API function for user registration
     userRegistration(userDetails)
     .then(response => {
       console.log(response);
-      if(response.data.status === 'success') {
+      if(response.data.status === 200) {
         setHasError(false);
         reset();
       } else {
@@ -37,7 +42,11 @@ function Register() {
         setHasError(true);
       }
     })
-    .catch(error => setHasError(true))
+    .catch((error) => {
+      console.log(error);
+      setHasError(true)
+    })
+    navigate('/login');
   }
 
   // Event handlers
@@ -45,12 +54,20 @@ function Register() {
     setEmail(e.target.value);
   }
 
+  const handlePwInput = e => {
+    setPassword(e.target.value);
+  }
+
+  const handlePwConfirmation = e => {
+    setPwConfirmation(e.target.value);
+  }
+
   const handleSubmit = e => {
-    createUser();
+    createUser(e);
   }
 
   const handleClickSubmit = e => {
-    createUser();
+    createUser(e);
   }
 
   return (
@@ -59,10 +76,53 @@ function Register() {
         <Errors title='Check your email address.'>
           Review the information you have submitted and try again.
         </Errors>
-        <RegBody value={email}
-        onChange={handleEmailInput}
-        onSubmit={e => handleSubmit}
-        onClick={e => handleClickSubmit}/>
+        <div>
+            <form onSubmit={handleSubmit}>
+                <div>
+                    <input type='text'
+                    name='email'
+                    id='email'
+                    value={email}
+                    onChange={handleEmailInput}
+                    placeholder='name@work-email.com'
+                    pattern='^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$'
+                    required></input>
+                </div>
+                <div>
+                    <input type='password'
+                    name='password'
+                    id='password'
+                    value={password}
+                    onChange={handlePwInput}
+                    placeholder='Enter your password here.'
+                    pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
+                    required></input>
+                </div>
+                <div>
+                    <input type='password'
+                    name='password_confirmation'
+                    id='password_confirmation'
+                    value={password_confirmation}
+                    onChange={handlePwConfirmation}
+                    placeholder='Confirm your password here.'
+                    pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
+                    required></input>
+                </div>
+                <div>
+                    <button onClick={handleClickSubmit}>Create an Account</button>
+                </div>
+                <div>
+                    <input type='checkbox'
+                    name='subscribe'
+                    id='subscribe'
+                    value='subscribe'></input>
+                    <span>It's okay to send me emails about Slack.</span>
+                </div>
+                <div>
+                    By continuing, you're agreeing to our <a href="https://slack.com/terms-of-service">Customer Terms of Service</a>, <a href="https://slack.com/privacy-policy">Privacy Policy</a>, and <a href="https://slack.com/cookie-policy">Cookie Policy</a>.
+                </div>
+            </form>
+        </div>
         <RegFooter/>
       </>
   );

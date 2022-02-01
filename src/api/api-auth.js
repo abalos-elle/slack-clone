@@ -6,20 +6,25 @@ const baseUrl = axios.create({
 })
 
 // User Registration Functionality
-export const userRegistration = ({email, password, passwordConfirmation}) => {
-    return baseUrl.post('/api/v1/auth/', {
-        email, password, passwordConfirmation
-    })
-    .then(response => response)
-    .then(data => data)
-    .catch(error => error)
+export const userRegistration = async ({email, password, password_confirmation}) => {
+    try {
+        const response =  await baseUrl.post('/api/v1/auth/', {
+            email, password, password_confirmation
+        })
+        return response;
+    } catch (error) {
+        return error;
+    }
 }
 
 // User Login Functionality
-export const userLogin = ({email, password}) => {
-    return baseUrl.post('/api/v1/auth/sign_in', {
-        email, password
-    })
-    .then(response => response)
-    .catch(error => error)
+export const userLogin = async ({email, password}) => {
+    try {
+        const response = await baseUrl.post('/api/v1/auth/sign_in', {
+            email, password
+        })
+        return response;
+    } catch (error) {
+        return error;
+    }
 }
