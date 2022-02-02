@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { userLogin } from './../../api/api-auth';
 import LoginHeader from './LoginComponents/LoginHeader';
 import LoginFooter from './LoginComponents/LoginFooter';
@@ -12,8 +12,9 @@ function Login() {
     const [password, setPassword] = useState('')
     const [hasError, setHasError] = useState(false)
 
-    // Declare variable for useNavigate
+    // Declare variable for useNavigate & useParams
     let navigate = useNavigate();
+    let { uid } = useParams()
 
     // Reset function
     const reset = () => {
@@ -34,8 +35,11 @@ function Login() {
             console.log(response);
             if(response.status === 200) {
                 sessionStorage.setItem('userLoggedInDetails', JSON.stringify(response.headers));
+                uid = response.data.data.id;
+                console.log(uid);
                 setHasError(false);
                 reset();
+                navigate(`/home/${uid}`);
             } else {
                 setHasError(true);
             }
@@ -44,8 +48,6 @@ function Login() {
             console.log(error);
             setHasError(true);
         })
-        // ❗️ Update with home page path
-        navigate('/');
     }
     
     // Event handlers
