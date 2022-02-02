@@ -10,12 +10,14 @@ import { BsChatText } from 'react-icons/bs'
 import { IoChatbubblesOutline, IoChevronDownOutline } from 'react-icons/io5'
 import avatar from './avatar-placeholder.png'
 import Messages from './components/Messages'
+import { useParams } from 'react-router-dom'
 
 const Home = () => {
+  let {uid} = useParams();
   // TODO: convert to individual components once available
   return (
     <main className="main-container">
-      <header className="searchbar-container">search bar here</header>
+      <header className="searchbar-container">search bar here; <p>Test: This is the home page for {uid}. </p></header>
       <nav className="sidebar-container">
         <div className="sidebar-header">
           <button className="team-name-button">
