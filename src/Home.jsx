@@ -9,6 +9,7 @@ import {
 import { BsChatText } from 'react-icons/bs'
 import { IoChatbubblesOutline, IoChevronDownOutline } from 'react-icons/io5'
 import avatar from './avatar-placeholder.png'
+import Messages from './components/Messages'
 
 const Home = () => {
   // TODO: convert to individual components once available
@@ -64,17 +65,17 @@ const Home = () => {
             </div>
             <ul className="direct-messages">
               <li>
-                <img src={avatar} />
+                <img src={avatar} alt="avatar" />
                 <div className="online-status-on"></div>
                 <span>jianne</span>
               </li>
               <li>
-                <img src={avatar} />
+                <img src={avatar} alt="avatar" />
                 <div className="online-status-off"></div>
                 <span>elle</span>
               </li>
               <li className="nav-select">
-                <img src={avatar} />
+                <img src={avatar} alt="avatar" />
                 <div className="online-status-off"></div>
                 <span>bill</span>
               </li>
@@ -82,6 +83,7 @@ const Home = () => {
           </li>
         </ul>
       </nav>
+      <Messages />
     </main>
   )
 }
