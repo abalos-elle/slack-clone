@@ -3,7 +3,7 @@ import { FiGlobe, FiChevronDown } from "react-icons/fi";
 
 function LoginFooter() {
   return (
-      <footer>
+      <footer className=''>
           <div>
               <a href="https://slack.com/legal">Privacy & Terms</a>
           </div>
