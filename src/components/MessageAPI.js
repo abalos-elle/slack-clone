@@ -1,18 +1,22 @@
 import axios from 'axios'
-import { sampleResponse } from './sampleResponse'
-const axiosFetch = axios.create({
-  baseURL: 'http://206.189.91.54/api/v1',
-  headers: {
-    'access-token': sampleResponse.token,
-    client: sampleResponse.client,
-    expiry: sampleResponse.expiry,
-    uid: sampleResponse.uid,
-  },
-})
+
+const headers = JSON.parse(sessionStorage.getItem('userLoggedInDetails'))
+
+const axiosFetch = headers
+  ? axios.create({
+      baseURL: `${process.env.REACT_APP_AVION_SLACK_API}`,
+      headers: {
+        'access-token': headers['access-token'],
+        client: headers['client'],
+        expiry: headers['expiry'],
+        uid: headers['uid'],
+      },
+    })
+  : null
 
 export const sendMessage = async ({ receiver_id, receiver_class, body }) => {
   try {
-    const response = await axiosFetch.post('/messages', {
+    const response = await axiosFetch.post('/api/v1/messages', {
       receiver_id,
       receiver_class,
       body,
@@ -26,23 +30,10 @@ export const sendMessage = async ({ receiver_id, receiver_class, body }) => {
 
 export const getMessages = async ({ receiver_id, receiver_class }) => {
   try {
-    const response = await axiosFetch.get('/messages', {
+    const response = await axiosFetch.get('api/v1/messages', {
       params: { receiver_class, receiver_id },
     })
     return response
-  } catch (error) {
-    return error
-  }
-}
-
-export const getSpecificUser = async ({
-  id,
-  headers: { token, client, expiry, uid },
-}) => {
-  try {
-    const response = await axiosFetch.get('/api/v1/users')
-    const result = response
-    return result.data.data.filter((data) => data.id === id)
   } catch (error) {
     return error
   }

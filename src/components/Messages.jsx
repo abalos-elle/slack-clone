@@ -4,17 +4,9 @@ import Message from './Message'
 import { getMessages, sendMessage } from './MessageAPI'
 import moment from 'moment'
 
-const sampleHeaders = {
-  token: 'rA8thW3o2vILeinpuBWWvw',
-  client: '5VA_7vvpaIxl4vuXZqsjJA',
-  expiry: '1644923225',
-  uid: 'jianne1@example.com',
-}
-
 const messageParams = {
   receiver_id: 1635,
   receiver_class: 'User',
-  headers: sampleHeaders,
   uid: 'jianne2@example.com',
 }
 
