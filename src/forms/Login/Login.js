@@ -33,6 +33,7 @@ function Login() {
         .then(response => {
             console.log(response);
             if(response.status === 200) {
+                sessionStorage.setItem('userLoggedInDetails', JSON.stringify(response.headers));
                 setHasError(false);
                 reset();
             } else {
