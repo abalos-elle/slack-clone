@@ -13,6 +13,8 @@ import { IoChatbubblesOutline, IoChevronDownOutline } from 'react-icons/io5'
 import avatar from './avatar-placeholder.png'
 import Messages from './components/Messages'
 import { useParams } from 'react-router-dom'
+import RecentDms from './components/Users/RecentDms'
+import SearchBar from './components/Users/UserSearchbar/SearchBar'
 import Channel from './components/Channel/Channel'
 import Modals from './components/Modals'
 import NewChannel from './forms/Channels/NewChannel'
@@ -36,6 +38,7 @@ const Home = () => {
   // TODO: convert to individual components once available
   return (
     <main className="main-container">
+      <header className="searchbar-container">search bar here; <p>Test: This is the home page for {uid}. </p><SearchBar /></header>
       <header className="searchbar-container">search bar here</header>
       <nav className="sidebar-container">
         <div className="sidebar-header">
@@ -90,23 +93,8 @@ const Home = () => {
                 <FiPlus />
               </div>
             </div>
-            <ul className="direct-messages">
-              <li>
-                <img src={avatar} alt="avatar" />
-                <div className="online-status-on"></div>
-                <span>jianne</span>
-              </li>
-              <li>
-                <img src={avatar} alt="avatar" />
-                <div className="online-status-off"></div>
-                <span>elle</span>
-              </li>
-              <li className="nav-select">
-                <img src={avatar} alt="avatar" />
-                <div className="online-status-off"></div>
-                <span>bill</span>
-              </li>
-            </ul>
+            <RecentDms />
+            
           </li>
         </ul>
       </nav>
