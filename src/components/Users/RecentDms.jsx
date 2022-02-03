@@ -3,16 +3,13 @@ import { getRecentDms } from "./api-users.js";
 import avatar from "../../avatar-placeholder.png";
 
 const RecentDms = () => {
-  // const [userList, setUserList] = useState([]);
   const [recentDms, setRecentDms] = useState([]);
-
-  const headers = JSON.parse(sessionStorage.getItem("userLoggedInDetails"));
 
   useEffect(() => {
     getRecentDms()
       .then((res) => {
         setRecentDms(res["data"]["data"]);
-        console.log(res["data"]["data"]);
+        // console.log(res["data"]["data"]);
       })
       .catch((error) => error);
   }, []);

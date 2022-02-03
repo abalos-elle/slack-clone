@@ -12,13 +12,14 @@ import avatar from './avatar-placeholder.png'
 import Messages from './components/Messages'
 import { useParams } from 'react-router-dom'
 import RecentDms from './components/Users/RecentDms'
+import SearchBar from './components/Users/UserSearchbar/SearchBar'
 
 const Home = () => {
   let {uid} = useParams();
   // TODO: convert to individual components once available
   return (
     <main className="main-container">
-      <header className="searchbar-container">search bar here; <p>Test: This is the home page for {uid}. </p></header>
+      <header className="searchbar-container">search bar here; <p>Test: This is the home page for {uid}. </p><SearchBar /></header>
       <nav className="sidebar-container">
         <div className="sidebar-header">
           <button className="team-name-button">
@@ -67,6 +68,7 @@ const Home = () => {
               <span>Direct Messages</span>
             </div>
             <RecentDms />
+            
           </li>
         </ul>
       </nav>
