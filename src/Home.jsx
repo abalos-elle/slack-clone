@@ -1,10 +1,12 @@
 import React from 'react'
+import { useState } from 'react'
 import {
   FiEdit,
   FiChevronDown,
   FiAtSign,
   FiMoreVertical,
   FiLock,
+  FiPlus
 } from 'react-icons/fi'
 import { BsChatText } from 'react-icons/bs'
 import { IoChatbubblesOutline, IoChevronDownOutline } from 'react-icons/io5'
@@ -13,13 +15,31 @@ import Messages from './components/Messages'
 import { useParams } from 'react-router-dom'
 import RecentDms from './components/Users/RecentDms'
 import SearchBar from './components/Users/UserSearchbar/SearchBar'
+import Channel from './components/Channel/Channel'
+import Modals from './components/Modals'
+import NewChannel from './forms/Channels/NewChannel'
 
 const Home = () => {
   let {uid} = useParams();
+
+  // Set states
+  const [isModalOpen, setModalOpen] = useState(false)
+
+  // Create function to open modals on click
+  const handleOpen = () => {
+    setModalOpen(true);
+  }
+  // Create function to close modals on click
+  const handleClose = () => {
+    setModalOpen(false);
+  }
+
+
   // TODO: convert to individual components once available
   return (
     <main className="main-container">
       <header className="searchbar-container">search bar here; <p>Test: This is the home page for {uid}. </p><SearchBar /></header>
+      <header className="searchbar-container">search bar here</header>
       <nav className="sidebar-container">
         <div className="sidebar-header">
           <button className="team-name-button">
@@ -50,6 +70,9 @@ const Home = () => {
             <div className="channels-dropdown-header">
               <IoChevronDownOutline />
               <span>Channels</span>
+              <div className='sidebar-add-icon'>
+                <FiPlus onClick={handleOpen} />
+              </div>
             </div>
             <ul className="channels">
               <li>
@@ -66,13 +89,25 @@ const Home = () => {
             <div className="direct-messages-dropdown-header">
               <IoChevronDownOutline />
               <span>Direct Messages</span>
+              <div className='sidebar-add-icon'>
+                <FiPlus />
+              </div>
             </div>
             <RecentDms />
             
           </li>
         </ul>
       </nav>
-      <Messages />
+      {/* <Messages /> */}
+      <Channel/>
+      {isModalOpen && <Modals modalTitle={`Create a channel`}
+      modalSubtitle={`Channels are where your team communicates. They're best when organized around a topic -- #marketing, for example.`}
+      btnText='Create'
+      btnTitle='create-channel'
+      btnClass='btn-rectangle-large'
+      handleClose={handleClose}>
+        <NewChannel />
+      </Modals>}
     </main>
   )
 }

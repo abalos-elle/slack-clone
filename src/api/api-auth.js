@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // Axios baseURL configuration
-const baseUrl = axios.create({
+export const baseUrl = axios.create({
     baseURL: `${process.env.REACT_APP_AVION_SLACK_API}`
 })
 
