@@ -1,21 +1,14 @@
 import React from 'react'
 import { useState } from 'react'
-import {
-  FiEdit,
-  FiChevronDown,
-  FiAtSign,
-  FiMoreVertical,
-  FiLock,
-  FiPlus
-} from 'react-icons/fi'
-import { BsChatText } from 'react-icons/bs'
-import { IoChatbubblesOutline, IoChevronDownOutline } from 'react-icons/io5'
-import avatar from './avatar-placeholder.png'
-import Messages from './components/Messages'
 import { useParams } from 'react-router-dom'
+import Messages from './components/Messages'
 import Channel from './components/Channel/Channel'
 import Modals from './components/Modals'
 import NewChannel from './forms/Channels/NewChannel'
+import { FiEdit, FiChevronDown, FiAtSign, FiMoreVertical, FiLock, FiPlus } from 'react-icons/fi'
+import { IoChatbubblesOutline, IoChevronDownOutline } from 'react-icons/io5'
+import { BsChatText } from 'react-icons/bs'
+import avatar from './avatar-placeholder.png'
 
 const Home = () => {
   let {uid} = useParams();
