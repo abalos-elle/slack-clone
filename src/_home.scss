@@ -1,5 +1,8 @@
 @import 'guide';
+@import 'Modals';
+@import 'Buttons';
 @import 'messages';
+@import 'Channel';
 
 .main-container {
   width: 100vw;
@@ -82,13 +85,23 @@
 
 .channels-dropdown-header,
 .direct-messages-dropdown-header {
+  width: 100%;
   padding: 10px 16px;
   display: flex;
   align-items: center;
   line-height: 2;
   & span {
-    padding-left: 8px;
+    width: 65%;
+    padding: 8px;
   }
+}
+
+.sidebar-add-icon {
+  width: 30%;
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  cursor: pointer;
 }
 
 .channels,
