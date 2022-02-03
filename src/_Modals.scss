@@ -1,0 +1,48 @@
+.modal-backdrop {
+    width: 100%;
+    height: 100%;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: $black-90;
+}
+
+.modal-container {
+    margin: 120px auto;
+    padding: 12px 24px 24px 24px;
+    max-width: 520px;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+    background-color: $white;
+    border-radius: 12px;
+}
+
+.modal-header-title {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 32px;
+}
+
+.modal-title {
+    font-weight: 900;
+}
+
+.btn-close-icon-modal {
+    font-size: large;
+    text-align: right;
+    cursor: pointer;
+}
+
+.modal-header-subtitle {
+    margin-bottom: 20px;
+}
+
+.modal-body {
+    margin-bottom: 32px;
+}

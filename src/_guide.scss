@@ -11,7 +11,6 @@ $sans: 'Lato', sans-serif;
 
 $purple: #3f0e40;
 $purple-dark: #350d36;
-$black: #1d1c1d;
 $gray: #6f6f6f;
 $lightgray: #bebebe;
 $links: #3c71a6;
@@ -27,6 +26,10 @@ $white-75: #ffffff75;
 $white-50: #ffffff50;
 $white-10: #ffffff10;
 
-//
+// Black with % opacity
+$black: #1d1c1d;
+$black-90: #1d1c1d90;
+$black-75: #1d1c1d75;
+$black-50: #1d1c1d50;
 
 $border-thin: 1px solid $white-10;
