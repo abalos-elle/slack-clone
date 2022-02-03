@@ -2,7 +2,7 @@ import axios from "axios";
 
 const headers = JSON.parse(sessionStorage.getItem("userLoggedInDetails"));
 
-const axiosFetch = axios.create({
+const axiosFetch = headers ? axios.create({
   baseURL: process.env.REACT_APP_AVION_SLACK_API,
   headers: {
     "access-token": headers["access-token"],
@@ -10,7 +10,7 @@ const axiosFetch = axios.create({
     expiry: headers["expiry"],
     uid: headers["uid"],
   },
-});
+}) : null;
 
 export const getAllUsers = async () => {
   try {
