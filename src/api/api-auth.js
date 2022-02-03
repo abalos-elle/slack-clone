@@ -5,7 +5,7 @@ export const baseUrl = axios.create({
     baseURL: `${process.env.REACT_APP_AVION_SLACK_API}`
 })
 
-// User Registration Functionality
+// User Registration Functionality`
 export const userRegistration = async ({email, password, password_confirmation}) => {
     try {
         const response =  await baseUrl.post('/api/v1/auth/', {
