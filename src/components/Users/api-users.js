@@ -2,7 +2,7 @@ import axios from "axios";
 
 const headers = JSON.parse(sessionStorage.getItem("userLoggedInDetails"));
 
-// export const getAllUsers = async (config) => {
+// export const getAllUsers = async ({ receiver_id, receiver_class, body }) => {
     // try {
     //     const response = await axiosFetch.get("/api/v1/users/recent", {
     //       receiver_id,
@@ -27,15 +27,12 @@ const axiosFetch = headers
     })
   : null;
 
-export const getRecentDms = async ({ receiver_id, receiver_class, body }) => {
+export const getRecentDms = async () => {
   try {
-    const response = await axiosFetch.get("/api/v1/users/recent", {
-      receiver_id,
-      receiver_class,
-      body,
-    });
+    const response = await axiosFetch.get("/api/v1/users/recent");
     return response;
   } catch (error) {
     return error;
   }
 };
+

@@ -9,7 +9,7 @@ const RecentDms = () => {
   const headers = JSON.parse(sessionStorage.getItem("userLoggedInDetails"));
 
   useEffect(() => {
-    getRecentDms(headers)
+    getRecentDms()
       .then((res) => {
         setRecentDms(res["data"]["data"]);
         console.log(res["data"]["data"]);
