@@ -1,24 +1,41 @@
-import axios from 'axios';
+import axios from "axios";
 
-export const FetchAllUsers = async (config) => {
+const headers = JSON.parse(sessionStorage.getItem("userLoggedInDetails"));
+
+// export const getAllUsers = async (config) => {
+    // try {
+    //     const response = await axiosFetch.get("/api/v1/users/recent", {
+    //       receiver_id,
+    //       receiver_class,
+    //       body,
+    //     });
+    //     return response;
+    //   } catch (error) {
+    //     return error;
+    //   }
+// }
+
+const axiosFetch = headers
+  ? axios.create({
+      baseURL: `${process.env.REACT_APP_AVION_SLACK_API}`,
+      headers: {
+        "access-token": headers["access-token"],
+        client: headers["client"],
+        expiry: headers["expiry"],
+        uid: headers["uid"],
+      },
+    })
+  : null;
+
+export const getRecentDms = async ({ receiver_id, receiver_class, body }) => {
   try {
-      const response = await axios.get("http://206.189.91.54//api/v1/users", {
-          headers: config
-      });
-      return response;
+    const response = await axiosFetch.get("/api/v1/users/recent", {
+      receiver_id,
+      receiver_class,
+      body,
+    });
+    return response;
   } catch (error) {
-      return error;
+    return error;
   }
-}
-
-export const FetchRecentDms = async (config) => {
-  try {
-      const response = await axios.get("http://206.189.91.54//api/v1/users/recent", {
-          headers: config
-      });
-      return response;
-  } catch (error) {
-      return error;
-  }
-}
-
+};

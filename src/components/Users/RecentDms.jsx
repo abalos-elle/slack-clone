@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { FetchRecentDms } from "./api-users.js";
+import { getRecentDms } from "./api-users.js";
 import avatar from "../../avatar-placeholder.png";
 
 const RecentDms = () => {
@@ -9,7 +9,7 @@ const RecentDms = () => {
   const headers = JSON.parse(sessionStorage.getItem("userLoggedInDetails"));
 
   useEffect(() => {
-    FetchRecentDms(headers)
+    getRecentDms(headers)
       .then((res) => {
         setRecentDms(res["data"]["data"]);
         console.log(res["data"]["data"]);
