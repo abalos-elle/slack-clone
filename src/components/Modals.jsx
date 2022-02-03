@@ -16,7 +16,7 @@ function Modals({children, modalTitle, handleClose, modalSubtitle, btnClass, btn
                 </div>
             </div>
             <div className='modal-body'>
-                <p>{children}</p>
+                {children}
             </div>
             <div className='modal-footer'>
                 <Buttons className={btnClass} title={btnTitle} text={btnText}/>
