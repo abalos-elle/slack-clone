@@ -16,7 +16,9 @@ function ChannelHeader() {
                 </Buttons>
             </div>
             <div className='btn-container'>
-
+                <Buttons className={`btn-channel-addUsers btn-rectangle-medium`} title='btn-channel-addUsers'>
+                    <span>Add Members</span>
+                </Buttons>
             </div>
         </div>
     );

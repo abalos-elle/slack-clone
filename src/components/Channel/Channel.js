@@ -6,7 +6,7 @@ import ChannelTextInput from './ChannelTextInput';
 function Channel() {
   return (
       <div className={`Channel-container`}>
-
+        <ChannelHeader />
       </div>
   );
 }

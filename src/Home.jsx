@@ -1,6 +1,7 @@
 import React from 'react'
-import { useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useState, useEffect } from 'react'
+import { useParams, useNavigate } from 'react-router-dom'
+import { channelCreate } from './api/api-channels'
 import Messages from './components/Messages'
 import RecentDms from './components/Users/RecentDms'
 import SearchBar from './components/Users/UserSearchbar/SearchBar'
@@ -13,10 +14,15 @@ import { BsChatText } from 'react-icons/bs'
 import avatar from './avatar-placeholder.png'
 
 const Home = () => {
+  // Variable definitions
+  let navigate = useNavigate();
   let {uid} = useParams();
+  let user_ids = [];
 
   // Set states
   const [isModalOpen, setModalOpen] = useState(false)
+  const [name, setName] = useState('')
+  const [description, setDescription] = useState('')
 
   // Create function to open modals on click
   const handleOpen = () => {
@@ -27,11 +33,69 @@ const Home = () => {
     setModalOpen(false);
   }
 
+  // Create new channel
+  const newChannel = e => {
+    e.preventDefault();
+    
+    // get userLoggedInDetails
+    let userDetails = JSON.parse(sessionStorage.getItem('userLoggedInDetails'))
+    
+    // set user_ids array for creating new channel to uid of the one creating the channel
+    user_ids = [userDetails.uid];
+
+    // create object
+    const newChannelDetails = {
+      name,
+      user_ids
+    }
+
+    // call API
+    channelCreate(newChannelDetails)
+    .then(response => {
+      console.log(response);
+      if (response.data.errors != null) {
+        console.log(response.config.data);
+        return response;
+      }
+    })
+    .catch(error => {
+      console.log(error);
+      return error;
+    })
+    reset();
+  }
+  
+  // Event handlers
+  const handleNameInput = e => {
+    setName(e.target.value);
+  }
+
+  const handleDescriptionInput = e => {
+    setDescription(e.target.value);
+  }
+  
+  const handleSubmit = e => {
+    newChannel(e);
+  }
+
+  const handleClick = e => {
+    newChannel(e);
+  }
+
+  // Reset function
+  const reset = () => {
+    setModalOpen(false);
+    setName('');
+    setDescription('');
+  }
+
 
   // TODO: convert to individual components once available
   return (
     <main className="main-container">
-      <header className="searchbar-container">search bar here; <p>Test: This is the home page for {uid}. </p><SearchBar /></header>
+      <header className="searchbar-container">
+        {/* search bar here <SearchBar /> */}
+      </header>
       <header className="searchbar-container">search bar here</header>
       <nav className="sidebar-container">
         <div className="sidebar-header">
@@ -95,11 +159,13 @@ const Home = () => {
       <Channel/>
       {isModalOpen && <Modals modalTitle={`Create a channel`}
       modalSubtitle={`Channels are where your team communicates. They're best when organized around a topic -- #marketing, for example.`}
-      btnText='Create'
-      btnTitle='create-channel'
-      btnClass='btn-rectangle-large'
       handleClose={handleClose}>
-        <NewChannel />
+        <NewChannel handleSubmit={handleSubmit}
+        handleClick={handleClick}
+        handleNameInput={handleNameInput}
+        handleDescriptionInput={handleDescriptionInput}
+        name={name}
+        description={description}/>
       </Modals>}
     </main>
   )

@@ -1,9 +1,9 @@
 import React from 'react';
 
-function Buttons({ text, className, title }) {
+function Buttons({ children, className, title }) {
   return (
       <button className={className} title={title}>
-          {text}
+          {children}
       </button>
   );
 }

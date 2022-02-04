@@ -19,7 +19,7 @@ function App() {
           <Route path='/home/:uid/messages' element={<Home/>}>
             <Route path='/home/:uid/messages/:recipient' element={<Messages/>}/>
           </Route>
-          <Route path='/home/:uid/channels' element={<Home/>}>
+          <Route path='/home/:uid/channels' element={<Channel/>}>
             <Route path='/home/:uid/channels/:channelName' element={<Channel/>}/>
           </Route>
         </Route>

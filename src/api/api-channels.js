@@ -1,10 +1,9 @@
-import baseUrl from './api-auth';
 import axios from 'axios';
 
 // Create new axios instance
-const userHeaders = JSON.parse(sessionStorage.getItem('userLoggedInDetails'))
-const axiosFetch = axios.create({
-    baseURL: baseUrl,
+let userHeaders = JSON.parse(sessionStorage.getItem('userLoggedInDetails'))
+let axiosFetch = userHeaders ? axios.create({
+    baseURL: `${process.env.REACT_APP_AVION_SLACK_API}`,
     headers: {
         'access-token': userHeaders['access-token'],
         client: userHeaders.client,
@@ -12,11 +11,12 @@ const axiosFetch = axios.create({
         uid: userHeaders.uid
     }
 })
+: null
 
 // Connect to API to create a channel
-export const channelCreate = async ({ name, user_ids}) => {
+export const channelCreate = async ({ name, user_ids }) => {
     try {
-        const response = await axiosFetch.post('/api/v1/channels', {name, user_ids})
+        const response = await axiosFetch.post('/api/v1/channels', {name, user_ids })
         return response;
     } catch (error) {
         return error;
