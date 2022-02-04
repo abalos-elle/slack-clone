@@ -3,10 +3,10 @@ import ChannelHeader from './ChannelHeader';
 import Chats from './Chats';
 import ChannelTextInput from './ChannelTextInput';
 
-function Channel() {
+function Channel({handleOpen}) {
   return (
       <div className={`Channel-container`}>
-        <ChannelHeader />
+        <ChannelHeader handleOpen={handleOpen} />
       </div>
   );
 }

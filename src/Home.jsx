@@ -20,17 +20,27 @@ const Home = () => {
   let user_ids = [];
 
   // Set states
-  const [isModalOpen, setModalOpen] = useState(false)
+  const [isNewChannelModalOpen, setNewChannelModalOpen] = useState(false)
+  const [isAddMembersModalOpen, setAddMembersModalOpen] = useState(false)
   const [name, setName] = useState('')
   const [description, setDescription] = useState('')
 
   // Create function to open modals on click
-  const handleOpen = () => {
-    setModalOpen(true);
+  const handleOpenNewChannel = () => {
+    setNewChannelModalOpen(true);
   }
+
+  const handleOpenAddMembers = () => {
+    setAddMembersModalOpen(true);
+  }
+
   // Create function to close modals on click
-  const handleClose = () => {
-    setModalOpen(false);
+  const handleCloseNewChannel = () => {
+    setNewChannelModalOpen(false);
+  }
+
+  const handleCloseAddMembers = () => {
+    setAddMembersModalOpen(false);
   }
 
   // Create new channel
@@ -84,7 +94,8 @@ const Home = () => {
 
   // Reset function
   const reset = () => {
-    setModalOpen(false);
+    setNewChannelModalOpen(false);
+    setAddMembersModalOpen(false);
     setName('');
     setDescription('');
   }
@@ -94,9 +105,9 @@ const Home = () => {
   return (
     <main className="main-container">
       <header className="searchbar-container">
-        {/* search bar here <SearchBar /> */}
+        <SearchBar />
       </header>
-      <header className="searchbar-container">search bar here</header>
+      {/* <header className="searchbar-container">search bar here</header> */}
       <nav className="sidebar-container">
         <div className="sidebar-header">
           <button className="team-name-button">
@@ -128,7 +139,7 @@ const Home = () => {
               <IoChevronDownOutline />
               <span>Channels</span>
               <div className='sidebar-add-icon'>
-                <FiPlus onClick={handleOpen} />
+                <FiPlus onClick={handleOpenNewChannel} />
               </div>
             </div>
             <ul className="channels">
@@ -156,16 +167,24 @@ const Home = () => {
         </ul>
       </nav>
       {/* <Messages /> */}
-      <Channel/>
-      {isModalOpen && <Modals modalTitle={`Create a channel`}
+      <Channel handleOpen={handleOpenAddMembers}/>
+      
+      {/* Modal for adding a new channel  */}
+      {isNewChannelModalOpen && <Modals modalTitle={`Create a channel`}
       modalSubtitle={`Channels are where your team communicates. They're best when organized around a topic -- #marketing, for example.`}
-      handleClose={handleClose}>
+      handleClose={handleCloseNewChannel}>
         <NewChannel handleSubmit={handleSubmit}
         handleClick={handleClick}
         handleNameInput={handleNameInput}
         handleDescriptionInput={handleDescriptionInput}
         name={name}
         description={description}/>
+      </Modals>}
+
+      {/* Modal for adding members to a channel */}
+      {isAddMembersModalOpen && <Modals modalTitle={`#channelname`}
+      handleClose={handleCloseAddMembers}>
+        <SearchBar />
       </Modals>}
     </main>
   )
