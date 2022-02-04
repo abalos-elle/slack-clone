@@ -3,11 +3,12 @@ import Buttons from './../Buttons';
 import { FiLock, FiChevronDown } from 'react-icons/fi';
 import { useParams } from 'react-router-dom';
 
-function ChannelHeader() {
+function ChannelHeader({ handleOpen }) {
     let {channelName} = useParams();
 
     return (
-        <div className='Channel-header-container'>
+        <div className='Channel-header-container'
+        onClick={handleOpen}>
             <div className='btn-container'>
                 <Buttons className={`btn-channel-title btn-rectangle-medium`} title='btn-channel-title'>
                     <span><FiLock/></span>
@@ -16,7 +17,9 @@ function ChannelHeader() {
                 </Buttons>
             </div>
             <div className='btn-container'>
-
+                <Buttons className={`btn-channel-addUsers btn-rectangle-medium`} title='btn-channel-addUsers'>
+                    <span>Add Members</span>
+                </Buttons>
             </div>
         </div>
     );

@@ -1,7 +1,10 @@
 import React from 'react'
-import { useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+
+import { useState, useEffect } from 'react'
+import { useParams, useNavigate } from 'react-router-dom'
+import { channelCreate } from './api/api-channels'
 import Messages from './components/Messages/Messages'
+
 import RecentDms from './components/Users/RecentDms'
 import SearchBar from './components/Users/UserSearchbar/SearchBar'
 import Channel from './components/Channel/Channel'
@@ -21,19 +24,92 @@ import avatar from './avatar-placeholder.png'
 import { Outlet, Link } from 'react-router-dom'
 
 const Home = () => {
-  let { uid } = useParams()
-  let navigate = useNavigate()
+  // Variable definitions
+  let navigate = useNavigate();
+  let {uid} = useParams();
+  let user_ids = [];
 
   // Set states
-  const [isModalOpen, setModalOpen] = useState(false)
+  const [isNewChannelModalOpen, setNewChannelModalOpen] = useState(false)
+  const [isAddMembersModalOpen, setAddMembersModalOpen] = useState(false)
+  const [name, setName] = useState('')
+  const [description, setDescription] = useState('')
 
   // Create function to open modals on click
-  const handleOpen = () => {
-    setModalOpen(true)
+
+  const handleOpenNewChannel = () => {
+    setNewChannelModalOpen(true);
   }
+
+  const handleOpenAddMembers = () => {
+    setAddMembersModalOpen(true);
+  }
+
   // Create function to close modals on click
-  const handleClose = () => {
-    setModalOpen(false)
+  const handleCloseNewChannel = () => {
+    setNewChannelModalOpen(false);
+  }
+
+  const handleCloseAddMembers = () => {
+    setAddMembersModalOpen(false);
+  }
+
+  // Create new channel
+  const newChannel = e => {
+    e.preventDefault();
+    
+    // get userLoggedInDetails
+    let userDetails = JSON.parse(sessionStorage.getItem('userLoggedInDetails'))
+    
+    // set user_ids array for creating new channel to uid of the one creating the channel
+    user_ids = [userDetails.uid];
+
+    // create object
+    const newChannelDetails = {
+      name,
+      user_ids
+    }
+
+    // call API
+    channelCreate(newChannelDetails)
+    .then(response => {
+      console.log(response);
+      if (response.data.errors != null) {
+        console.log(response.config.data);
+        return response;
+      }
+    })
+    .catch(error => {
+      console.log(error);
+      return error;
+    })
+    reset();
+  }
+  
+  // Event handlers
+  const handleNameInput = e => {
+    setName(e.target.value);
+  }
+
+  const handleDescriptionInput = e => {
+    setDescription(e.target.value);
+  }
+  
+  const handleSubmit = e => {
+    newChannel(e);
+  }
+
+  const handleClick = e => {
+    newChannel(e);
+  }
+
+  // Reset function
+  const reset = () => {
+    setNewChannelModalOpen(false);
+    setAddMembersModalOpen(false);
+    setName('');
+    setDescription('');
+
   }
 
   // TODO: convert to individual components once available
@@ -82,8 +158,8 @@ const Home = () => {
             <div className="channels-dropdown-header">
               <IoChevronDownOutline />
               <span>Channels</span>
-              <div className="sidebar-add-icon">
-                <FiPlus onClick={handleOpen} />
+              <div className='sidebar-add-icon'>
+                <FiPlus onClick={handleOpenNewChannel} />
               </div>
             </div>
             <ul className="channels">
@@ -112,19 +188,27 @@ const Home = () => {
         </ul>
       </nav>
       <Outlet />
-      <Channel />
-      {isModalOpen && (
-        <Modals
-          modalTitle={`Create a channel`}
-          modalSubtitle={`Channels are where your team communicates. They're best when organized around a topic -- #marketing, for example.`}
-          btnText="Create"
-          btnTitle="create-channel"
-          btnClass="btn-rectangle-large"
-          handleClose={handleClose}
-        >
-          <NewChannel />
-        </Modals>
-      )}
+
+      <Channel handleOpen={handleOpenAddMembers}/>
+      
+      {/* Modal for adding a new channel  */}
+      {isNewChannelModalOpen && <Modals modalTitle={`Create a channel`}
+      modalSubtitle={`Channels are where your team communicates. They're best when organized around a topic -- #marketing, for example.`}
+      handleClose={handleCloseNewChannel}>
+        <NewChannel handleSubmit={handleSubmit}
+        handleClick={handleClick}
+        handleNameInput={handleNameInput}
+        handleDescriptionInput={handleDescriptionInput}
+        name={name}
+        description={description}/>
+      </Modals>}
+
+      {/* Modal for adding members to a channel */}
+      {isAddMembersModalOpen && <Modals modalTitle={`#channelname`}
+      handleClose={handleCloseAddMembers}>
+        <SearchBar />
+      </Modals>}
+
     </main>
   )
 }
