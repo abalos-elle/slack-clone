@@ -1,17 +1,27 @@
 import React from 'react'
+
 import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { channelCreate } from './api/api-channels'
-import Messages from './components/Messages'
+import Messages from './components/Messages/Messages'
+
 import RecentDms from './components/Users/RecentDms'
 import SearchBar from './components/Users/UserSearchbar/SearchBar'
 import Channel from './components/Channel/Channel'
 import Modals from './components/Modals'
 import NewChannel from './forms/Channels/NewChannel'
-import { FiEdit, FiChevronDown, FiAtSign, FiMoreVertical, FiLock, FiPlus } from 'react-icons/fi'
+import {
+  FiEdit,
+  FiChevronDown,
+  FiAtSign,
+  FiMoreVertical,
+  FiLock,
+  FiPlus,
+} from 'react-icons/fi'
 import { IoChatbubblesOutline, IoChevronDownOutline } from 'react-icons/io5'
 import { BsChatText } from 'react-icons/bs'
 import avatar from './avatar-placeholder.png'
+import { Outlet, Link } from 'react-router-dom'
 
 const Home = () => {
   // Variable definitions
@@ -26,6 +36,7 @@ const Home = () => {
   const [description, setDescription] = useState('')
 
   // Create function to open modals on click
+
   const handleOpenNewChannel = () => {
     setNewChannelModalOpen(true);
   }
@@ -98,24 +109,33 @@ const Home = () => {
     setAddMembersModalOpen(false);
     setName('');
     setDescription('');
-  }
 
+  }
 
   // TODO: convert to individual components once available
   return (
     <main className="main-container">
       <header className="searchbar-container">
+        <p>Test: This is the home page for {uid}. </p>
         <SearchBar />
       </header>
-      {/* <header className="searchbar-container">search bar here</header> */}
       <nav className="sidebar-container">
         <div className="sidebar-header">
-          <button className="team-name-button">
-            Avion School <FiChevronDown />
+          <button
+            className="team-name-button"
+            onClick={() => {
+              sessionStorage.clear()
+              navigate('/login')
+            }}
+          >
+            FakeLogout <FiChevronDown />
           </button>
-          <div className="compose-button">
-            <FiEdit />
-          </div>
+
+          <Link to={`${uid}/new-message`}>
+            <div className="compose-button">
+              <FiEdit />
+            </div>
+          </Link>
         </div>
         <ul className="sidebar-menu">
           <li className="menu-options">
@@ -157,16 +177,18 @@ const Home = () => {
             <div className="direct-messages-dropdown-header">
               <IoChevronDownOutline />
               <span>Direct Messages</span>
-              <div className='sidebar-add-icon'>
+              <div className="sidebar-add-icon">
                 <FiPlus />
               </div>
             </div>
-            <RecentDms />
-            
+            <Link to={`${uid}/messages`}>
+              <RecentDms />
+            </Link>
           </li>
         </ul>
       </nav>
-      {/* <Messages /> */}
+      <Outlet />
+
       <Channel handleOpen={handleOpenAddMembers}/>
       
       {/* Modal for adding a new channel  */}
@@ -186,6 +208,7 @@ const Home = () => {
       handleClose={handleCloseAddMembers}>
         <SearchBar />
       </Modals>}
+
     </main>
   )
 }

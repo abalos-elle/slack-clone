@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import SendMessage from './SendMessage'
 import Message from './Message'
-import { getMessages, sendMessage } from './MessageAPI'
+import { getMessages, sendMessage } from '../../api/api-message'
 import moment from 'moment'
 
 const messageParams = {
-  receiver_id: 1635,
+  receiver_id: 1634,
   receiver_class: 'User',
-  uid: 'jianne2@example.com',
+  uid: 'jianne1@example.com',
 }
 
 const Messages = () => {
@@ -19,7 +19,8 @@ const Messages = () => {
   const handleMessages = () => {
     getMessages(messageParams)
       .then((res) => {
-        setMessageDetails(res.data.data)
+        console.log('getting messages')
+        setMessageDetails(res.data.data.reverse())
       })
       .catch((error) => console.log(error))
   }
@@ -40,21 +41,26 @@ const Messages = () => {
 
   return (
     <div className="messages-container">
-      <div className="recipient-container">
-        <button>{messageParams.uid}</button>
+      <div className="messages-container-header">
+        <button className="messages-receiver-button">
+          {messageParams.uid}
+        </button>
       </div>
-      {messageDetails !== ''
-        ? messageDetails.map((message) => {
-            return (
-              <Message
-                key={message.id}
-                sender={message.sender.email}
-                body={message.body}
-                time={moment(message.created_at).format('LT')}
-              />
-            )
-          })
-        : null}
+      <div className="messages-scroll-container">
+        {messageDetails !== ''
+          ? messageDetails.map((message, index) => {
+              return (
+                <Message
+                  key={index}
+                  sender={message.sender.email}
+                  body={message.body}
+                  time={moment(message.created_at).calendar()}
+                />
+              )
+            })
+          : null}
+      </div>
+
       <SendMessage onClick={handleSendMessage} />
     </div>
   )
