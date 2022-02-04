@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { getRecentDms } from './api-users.js'
 import avatar from '../../avatar-placeholder.png'
+import { NavLink } from "react-router-dom";
 
 const RecentDms = () => {
   const [recentDms, setRecentDms] = useState([])
@@ -20,12 +21,14 @@ const RecentDms = () => {
       {recentDms.map((UserList) => {
         const { id, email } = UserList
         return (
-          <li key={id}>
-            <img src={avatar} />
-            <div className="online-status-on"></div>
-            <span>{email}</span>
-          </li>
-        )
+          <NavLink to={`/user/${id}`} key={id}>
+            <li>
+              <img src={avatar} />
+              <div className="online-status-on"></div>
+              <h3>{email}</h3>
+            </li>
+          </NavLink>
+        );
       })}
     </ul>
   )
