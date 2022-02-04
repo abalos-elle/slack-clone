@@ -1,5 +1,5 @@
 import React from 'react'
-import avatar from '../avatar-placeholder.png'
+import avatar from '../../avatar-placeholder.png'
 
 const Message = ({ sender, time, body }) => {
   return (

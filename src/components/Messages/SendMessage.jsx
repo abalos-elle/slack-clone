@@ -22,7 +22,6 @@ const SendMessage = ({ onClick }) => {
               type="submit"
               onClick={(e) => {
                 e.preventDefault()
-                console.log('hello')
                 onClick(input)
                 setInput('')
               }}
