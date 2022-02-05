@@ -41,7 +41,7 @@ function App() {
             <Route path=":uid/" element={<CreateNewMessage />} />
             <Route path=":uid/new-message/" element={<CreateNewMessage />} />
             {/* TODO: add receiver ID as param */}
-            <Route path=":uid/messages" element={<Messages />} />
+            <Route path=":uid/messages/:id" element={<Messages />} />
             <Route path=":uid/channels/:channelName" element={<Channel />} />
           </Route>
         </>

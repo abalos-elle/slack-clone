@@ -2,10 +2,13 @@ import { useState, useEffect } from 'react'
 import { getAllUsers } from '.././api-users.js'
 import './SearchBar.scss'
 import avatar from '../../../avatar-placeholder.png'
+import { NavLink, useParams } from "react-router-dom";
 
 const SearchBar = ({ className }) => {
   const [userList, setUserList] = useState([])
   const [searchInput, setSearchInput] = useState('')
+
+  const params = useParams()
 
   useEffect(() => {
     getAllUsers()
@@ -26,34 +29,29 @@ const SearchBar = ({ className }) => {
           setSearchInput(event.target.value)
         }}
       />
-
-      {
-        // only show results when there is user input to avoid blank white padding
-        searchInput.length > 0 ? (
-          <ul className="filteredUsers">
-            {userList
-              .filter((user) => {
-                if (searchInput == '') {
-                  return ''
-                } else if (
-                  user.uid.toLowerCase().includes(searchInput.toLowerCase())
-                ) {
-                  console.log(user)
-                  return user
-                }
-              })
-              .map((user) => {
-                const { id, email } = user
-                return (
-                  <li key={id}>
-                    <img src={avatar} />
-                    <span>{email}</span>
-                  </li>
-                )
-              })}
-          </ul>
-        ) : null
-      }
+  
+      {userList
+        .filter((user) => {
+          if (searchInput == "") {
+            return "";
+          } else if (
+            user.uid.toLowerCase().includes(searchInput.toLowerCase())
+          ) {
+            // console.log(user);
+            return user;
+          }
+        })
+        .map((user) => {
+          const { id, email } = user;
+          return (
+            <NavLink to={`${params.uid}/messages/${id}`} key={id}>
+              <div className="filteredUsers" >
+                <img src={avatar} />
+                <h3>{email}</h3>
+              </div>
+            </NavLink>
+          );
+        })}
     </div>
   )
 }

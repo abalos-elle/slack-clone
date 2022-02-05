@@ -20,9 +20,13 @@
   background: white;
   height: auto;
   color: black;
-  li {
+  
     img {
       height: 1rem;
+      display: inline;
     }
-  }
+    h3 {
+      display: inline;
+    }
 }
+

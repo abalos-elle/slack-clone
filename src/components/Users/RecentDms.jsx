@@ -1,9 +1,18 @@
 import { useState, useEffect } from 'react'
 import { getRecentDms } from './api-users.js'
 import avatar from '../../avatar-placeholder.png'
+import { NavLink, useNavigate, useParams } from "react-router-dom";
 
 const RecentDms = () => {
   const [recentDms, setRecentDms] = useState([])
+  // let navigate = useNavigate();
+
+  // const handleNavigate = (id) =>  {
+  //   navigate(id)
+  // }
+  const params = useParams()
+
+
 
   useEffect(() => {
     getRecentDms()
@@ -13,19 +22,20 @@ const RecentDms = () => {
       })
       .catch((error) => error)
   }, [])
-  console.log(recentDms)
 
   return (
     <ul className="direct-messages">
       {recentDms.map((UserList) => {
         const { id, email } = UserList
         return (
-          <li key={id}>
-            <img src={avatar} />
-            <div className="online-status-on"></div>
-            <span>{email}</span>
-          </li>
-        )
+          <NavLink to={`${params.uid}/messages/${id}`} key={id}>
+            <li>
+              <img src={avatar} />
+              <div className="online-status-on"></div>
+              <h3>{email}</h3>
+            </li>
+          </NavLink>
+        );
       })}
     </ul>
   )
