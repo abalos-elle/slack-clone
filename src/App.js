@@ -37,7 +37,7 @@ function App() {
       {authenticated && (
         <>
           <Route path="/" element={<Home />}>
-            // TODO: add logout (fake logout created)
+            {/* TODO: add logout (fake logout created) */}
             <Route path=":uid/" element={<CreateNewMessage />} />
             <Route path=":uid/new-message/" element={<CreateNewMessage />} />
             {/* TODO: add receiver ID as param */}

@@ -29,7 +29,7 @@ const CreateNewMessage = () => {
   }
 
   return (
-    <div className="messages-container">
+    <div className="new-messages-container">
       <div className="messages-container-header">
         <p>New message</p>
       </div>
