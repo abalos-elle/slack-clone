@@ -2,11 +2,13 @@ import { useState, useEffect } from 'react'
 import { getAllUsers } from '.././api-users.js'
 import './SearchBar.scss'
 import avatar from '../../../avatar-placeholder.png'
-import { NavLink } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 
 const SearchBar = ({ className }) => {
   const [userList, setUserList] = useState([])
   const [searchInput, setSearchInput] = useState('')
+
+  const params = useParams()
 
   useEffect(() => {
     getAllUsers()
@@ -42,7 +44,7 @@ const SearchBar = ({ className }) => {
         .map((user) => {
           const { id, email } = user;
           return (
-            <NavLink to={`${id}`} key={id}>
+            <NavLink to={`${params.uid}/messages/${id}`} key={id}>
               <div className="filteredUsers" >
                 <img src={avatar} />
                 <h3>{email}</h3>

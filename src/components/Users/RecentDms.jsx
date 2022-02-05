@@ -1,10 +1,18 @@
 import { useState, useEffect } from 'react'
 import { getRecentDms } from './api-users.js'
 import avatar from '../../avatar-placeholder.png'
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
 
 const RecentDms = () => {
   const [recentDms, setRecentDms] = useState([])
+  // let navigate = useNavigate();
+
+  // const handleNavigate = (id) =>  {
+  //   navigate(id)
+  // }
+  const params = useParams()
+
+
 
   useEffect(() => {
     getRecentDms()
@@ -20,7 +28,7 @@ const RecentDms = () => {
       {recentDms.map((UserList) => {
         const { id, email } = UserList
         return (
-          <NavLink to={`${id}`} key={id}>
+          <NavLink to={`${params.uid}/messages/${id}`} key={id}>
             <li>
               <img src={avatar} />
               <div className="online-status-on"></div>
