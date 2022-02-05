@@ -42,7 +42,7 @@ const SearchBar = ({ className }) => {
         .map((user) => {
           const { id, email } = user;
           return (
-            <NavLink to={`/user/${id}`} key={id}>
+            <NavLink to={`${id}`} key={id}>
               <div className="filteredUsers" >
                 <img src={avatar} />
                 <h3>{email}</h3>

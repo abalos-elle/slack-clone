@@ -14,14 +14,13 @@ const RecentDms = () => {
       })
       .catch((error) => error)
   }, [])
-  console.log(recentDms)
 
   return (
     <ul className="direct-messages">
       {recentDms.map((UserList) => {
         const { id, email } = UserList
         return (
-          <NavLink to={`/user/${id}`} key={id}>
+          <NavLink to={`${id}`} key={id}>
             <li>
               <img src={avatar} />
               <div className="online-status-on"></div>
