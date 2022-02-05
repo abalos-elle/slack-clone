@@ -28,7 +28,12 @@
   color: black;
 }
 
-.filteredUsers li img {
+.filteredUsers img {
   height: 1rem;
+  display: inline;
+}
+
+.filteredUsers h3 {
+  display: inline;
 }
 /*# sourceMappingURL=SearchBar.css.map */
