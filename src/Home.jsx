@@ -5,6 +5,8 @@ import { channelCreate } from './api/api-channels'
 import SearchBar from './components/Users/UserSearchbar/SearchBar'
 import Modals from './components/Modals'
 import NewChannel from './forms/Channels/NewChannel'
+import Logout from './components/Others/Logout/Logout'
+import LogoutDropdown from './components/Others/Logout/LogoutDropdown'
 
 import { Outlet, Link } from 'react-router-dom'
 import Sidebar from './components/Sidebar'
@@ -18,26 +20,38 @@ const Home = () => {
   // Set states
   const [isNewChannelModalOpen, setNewChannelModalOpen] = useState(false)
   const [isAddMembersModalOpen, setAddMembersModalOpen] = useState(false)
+  const [isLogoutDropdownOpen, setLogoutDropdownOpen] = useState(false)
   const [name, setName] = useState('')
   const [description, setDescription] = useState('')
 
-  // Create function to open modals on click
-
-  // Create function to close modals on click
-  const handleCloseNewChannel = () => {
-    setNewChannelModalOpen(false)
-  }
-
+  // Open modal to add new channel
   const handleOpenNewChannel = () => {
     setNewChannelModalOpen(true)
   }
 
+  // Close modal to add new channel
+  const handleCloseNewChannel = () => {
+    setNewChannelModalOpen(false)
+  }
+
+  // Open modal to add new channel
   const handleOpenAddMembers = () => {
     setAddMembersModalOpen(true)
   }
 
+  // Close modal to add new channel
   const handleCloseAddMembers = () => {
     setAddMembersModalOpen(false)
+  }
+
+  // Open logout dropdown
+  const handleOpenLogoutDropdown = () => {
+    setLogoutDropdownOpen(true);
+  }
+
+  // Close logout dropdown
+  const handleCloseLogoutDropdown = () => {
+    setLogoutDropdownOpen(false);
   }
 
   // Create new channel
@@ -101,10 +115,11 @@ const Home = () => {
   return (
     <main className="main-container">
       <header className="searchbar-container">
-        <p>Test: This is the home page for {uid}. </p>
         <SearchBar className={'searchUser-container'} />
+        <Logout handleOpen={handleOpenLogoutDropdown}/>
+        {isLogoutDropdownOpen && <LogoutDropdown handleClose={handleCloseLogoutDropdown} />}
       </header>
-      <Sidebar />
+      <Sidebar handleOpenNewChannel={handleOpenNewChannel}/>
       <Outlet />
 
       {/* <Channel handleOpen={handleOpenAddMembers}/> */}

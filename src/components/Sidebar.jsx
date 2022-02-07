@@ -9,20 +9,12 @@ import {
 } from 'react-icons/fi'
 import { IoChatbubblesOutline, IoChevronDownOutline } from 'react-icons/io5'
 import { BsChatText } from 'react-icons/bs'
-import avatar from '../avatar-placeholder.png'
-import Messages from './Messages/Messages'
-import RecentDms from './Users/RecentDms'
-import Channel from './Channel/Channel'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 
-const Sidebar = () => {
+const Sidebar = ({handleOpenNewChannel}) => {
   let navigate = useNavigate()
   let { uid } = useParams()
   let user_ids = []
-
-  const handleOpenNewChannel = () => {
-    // setNewChannelModalOpen(true)
-  }
 
   return (
     <nav className="sidebar-container">
@@ -34,7 +26,7 @@ const Sidebar = () => {
             navigate('/login')
           }}
         >
-          FakeLogout <FiChevronDown />
+          Group 3 <FiChevronDown />
         </button>
 
         <Link to={`${uid}/new-message`}>
@@ -88,7 +80,7 @@ const Sidebar = () => {
             </div>
           </div>
           <Link to={`${uid}/messages`}>
-            <RecentDms />
+            
           </Link>
         </li>
       </ul>

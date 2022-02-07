@@ -9,7 +9,7 @@ function LogoutDropdown({handleClose}) {
     }
 
     return (
-    <div className='logout-backdrop' onClick={handleClose}>
+    <div className='modal-backdrop' onClick={handleClose}>
         <div className='logout-avatar-dropdown'>
             <ul>
                 <li>Profile</li>
