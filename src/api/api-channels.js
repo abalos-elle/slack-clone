@@ -33,10 +33,20 @@ export const channelsGet = async () => {
     }
 }
 
-// Connect to API to get channel details via channel ID
-export const channelDetailsGet = async (id) => {
+// Connect to API to get all user-owned channels
+export const channelsOwnedGet = async () => {
     try {
-        const response = await axiosFetch.get(`/api/v1/channels/${id}`)
+        const response = await axiosFetch.get('/api/v1/channel/owned')
+        return response;
+    } catch (error) {
+        return error;
+    }
+}
+
+// Connect to API to get channel details via channel ID
+export const channelDetailsGet = async (channelId) => {
+    try {
+        const response = await axiosFetch.get(`/api/v1/channels/${channelId}`)
         return response;
     } catch (error) {
         return error;
