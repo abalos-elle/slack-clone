@@ -1,11 +1,12 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 function LogoutDropdown({handleClose}) {
     let navigate = useNavigate();
     const signout = () => {
         sessionStorage.clear();
-        navigate('/login');
+        navigate('/logout/login');
+        // window.location.reload(true);
     }
 
     return (
@@ -15,7 +16,11 @@ function LogoutDropdown({handleClose}) {
                 <li>Profile</li>
                 <li>Preferences</li>
                 <hr></hr>
-                <li onClick={signout}>Sign out of Group 3</li>
+                <li onClick={signout}>
+                    <Link to='/logout/login'>
+                    Sign out of Group 3
+                    </Link>
+                </li>
             </ul>
         </div>
     </div>
