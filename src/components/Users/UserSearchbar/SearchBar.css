@@ -21,13 +21,8 @@
   height: auto;
   color: black;
 }
-
 .filteredUsers img {
   height: 1rem;
-  display: inline;
-}
-
-.filteredUsers h3 {
   display: inline;
 }
 .filteredUsers h3 {
