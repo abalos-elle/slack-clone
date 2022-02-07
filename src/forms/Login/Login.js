@@ -36,17 +36,16 @@ function Login({ authenticate, handleUserData }) {
       .then((response) => {
         console.log(response)
         if (response.status === 200) {
-          handleUserData(response.data, response.headers);
           sessionStorage.setItem(
             'userLoggedInDetails',
-            JSON.stringify(response.headers)
-          )
+            JSON.stringify(response.headers));
           uid = response.data.data.id
-          console.log(uid)
-          setHasError(false)
-          reset()
-          authenticate()
-          navigate(`/${uid}`)
+          console.log(uid);
+          setHasError(false);
+          reset();
+          authenticate();
+          navigate(`/${uid}`);
+          handleUserData(response.data, response.headers);
         } else {
           setHasError(true)
         }

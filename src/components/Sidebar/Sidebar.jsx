@@ -12,10 +12,9 @@ import { BsChatText } from 'react-icons/bs'
 import RecentDms from '../Users/RecentDms'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 
-const Sidebar = ({handleOpenNewChannel}) => {
+const Sidebar = ({ handleOpenNewChannel, listChannels, userdata, headers }) => {
   let navigate = useNavigate()
   let { uid } = useParams()
-  let user_ids = []
 
   return (
     <nav className="sidebar-container">
@@ -62,14 +61,14 @@ const Sidebar = ({handleOpenNewChannel}) => {
             </div>
           </div>
           <ul className="channels">
-            <li>
+            {/* <li>
               <FiLock size={'0.8em'} />
               <span>batch15</span>
             </li>
             <li>
               <FiLock size={'0.8em'} />
               <span>batch16</span>
-            </li>
+            </li> */}
           </ul>
         </li>
         <li className="direct-messages-dropdown">
