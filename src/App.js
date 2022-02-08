@@ -16,9 +16,14 @@ function App() {
   const [userHeaders, setUserHeaders] = useState('')
   
   // Function to set user & header data to child components
-  const handleUserData = (data, headers) => {
+  const handleUserData = (data) => {
+    console.log(data);
     setUserData(data);
-    setUserHeaders(headers);
+  }
+
+  const handleUserHeaders = (data) => {
+    console.log(data);
+    setUserHeaders(data);
   }
 
   // Updated to include dependency on authenticated, userData, userHeaders
@@ -43,7 +48,8 @@ function App() {
             path="/"
             element={
               <Login authenticate={() => setAuthenticated(true)} 
-              handleUserData={handleUserData}/>}
+              handleUserData={handleUserData}
+              handleUserHeaders={handleUserHeaders}/>}
           />
           <Route path="/register" element={<Register />} />
         </>
@@ -61,7 +67,11 @@ function App() {
           </Route>
         </>
       )}
-      <Route path='/logout/login' element={<Login authenticate={() => setAuthenticated(false)}/>} />
+      <Route path='/logout/login' element={
+        <Login authenticate={() => setAuthenticated(false)} 
+        handleUserData={handleUserData}
+        handleUserHeaders={handleUserHeaders}/>}
+      />
       <Route path="/404" element={<DefaultErrorPage />} />
       <Route path="*" element={<DefaultErrorPage />} />
     </Routes>

@@ -21,18 +21,18 @@ const RecentDms = () => {
     .then((data) => setRecentDms(data.data.data))
     .catch((err) => console.log("Fetch Interacted Users Error: ", err));
 
-console.log(loginData)
+// console.log(loginData)
   }, [recentDms])
 
-  console.log(recentDms)
+  // console.log(recentDms)
 
   const userIds = recentDms.map((user) => user.id);
-  console.log(userIds)
+  // console.log(userIds)
   const filteredUsers = recentDms.filter(({ id }, index) => {
         return !userIds.includes(id, index + 1);
       })
 
-    console.log(filteredUsers);
+    // console.log(filteredUsers);
 
   const renderUsersList = filteredUsers
   ? filteredUsers.map((user) => {
