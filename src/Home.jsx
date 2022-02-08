@@ -2,7 +2,7 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { channelCreate, channelsGet } from './api/api-channels'
-import SearchBar from './components/Users/UserSearchbar/SearchBar'
+// import SearchBar from './components/Users/UserSearchbar/SearchBar'
 import Modals from './components/Modals'
 import NewChannel from './forms/Channels/NewChannel'
 import Logout from './components/Others/Logout/Logout'
@@ -10,6 +10,8 @@ import LogoutDropdown from './components/Others/Logout/LogoutDropdown'
 
 import { Outlet } from 'react-router-dom'
 import Sidebar from './components/Sidebar'
+import Header from './components/Header/Header'
+import SearchBar from './components/Header/SearchBar/SearchBar'
 
 const Home = ({ userData, userHeaders }) => {
   // Variable definitions
@@ -19,7 +21,7 @@ const Home = ({ userData, userHeaders }) => {
   // Set states
   const [isNewChannelModalOpen, setNewChannelModalOpen] = useState(false)
   const [isAddMembersModalOpen, setAddMembersModalOpen] = useState(false)
-  const [isLogoutDropdownOpen, setLogoutDropdownOpen] = useState(false)
+  
   // Channel details
   const [channels, setChannels] = useState('')
   const [name, setName] = useState('')
@@ -27,6 +29,13 @@ const Home = ({ userData, userHeaders }) => {
   // User details
   const [userdata, setUserdata] = useState('')
   const [headers, setHeaders] = useState('')
+  const [isSearchBarOpen, setSearchBarOpen] = useState(false);
+
+
+  //Open Search Bar
+   const handleOpenSearchBar = () => {
+    setSearchBarOpen(!isSearchBarOpen);
+  };
 
   // Open modal to add new channel
   const handleOpenNewChannel = () => {
@@ -49,14 +58,10 @@ const Home = ({ userData, userHeaders }) => {
   }
 
   // Open logout dropdown
-  const handleOpenLogoutDropdown = () => {
-    setLogoutDropdownOpen(true);
-  }
+ 
 
   // Close logout dropdown
-  const handleCloseLogoutDropdown = () => {
-    setLogoutDropdownOpen(false);
-  }
+  
 
   // Create new channel
   const newChannel = (e) => {
@@ -131,11 +136,14 @@ const Home = ({ userData, userHeaders }) => {
 
   return (
     <main className="main-container">
-      <header className="searchbar-container">
-        <SearchBar className={'searchUser-container'} />
-        <Logout handleOpen={handleOpenLogoutDropdown}/>
-        {isLogoutDropdownOpen && <LogoutDropdown handleClose={handleCloseLogoutDropdown} />}
-      </header>
+       {isSearchBarOpen ? (
+        <SearchBar
+          handleOpenSearchBar={handleOpenSearchBar}
+          // headers={userHeaders}
+        />
+      ) : null}
+
+      <Header handleOpenSearchBar={handleOpenSearchBar}/>
       <Sidebar handleOpenNewChannel={handleOpenNewChannel}
       listChannels={channels}
       userdata={userdata}
