@@ -71,15 +71,17 @@ function Register() {
   }
 
   return (
-      <>
+      <div className='auth'>
         <RegHeader/>
-        <Errors title='Check your email address.'>
+        {hasError && <Errors title='Check your email address.'>
           Review the information you have submitted and try again.
-        </Errors>
+        </Errors>}
         <div>
-            <form onSubmit={handleSubmit}>
+            <form className='reg-form'
+            onSubmit={handleSubmit}>
                 <div>
-                    <input type='text'
+                    <input className='input-auth'
+                    type='text'
                     name='email'
                     id='email'
                     value={email}
@@ -89,7 +91,8 @@ function Register() {
                     required></input>
                 </div>
                 <div>
-                    <input type='password'
+                    <input className='input-auth'
+                    type='password'
                     name='password'
                     id='password'
                     value={password}
@@ -99,7 +102,8 @@ function Register() {
                     required></input>
                 </div>
                 <div>
-                    <input type='password'
+                    <input className='input-auth'
+                    type='password'
                     name='password_confirmation'
                     id='password_confirmation'
                     value={password_confirmation}
@@ -109,22 +113,25 @@ function Register() {
                     required></input>
                 </div>
                 <div>
-                    <button onClick={handleClickSubmit}>Create an Account</button>
+                    <button className='auth-button'
+                    onClick={handleClickSubmit}>
+                      Create an Account
+                      </button>
                 </div>
-                <div>
+                <div className='reg-checkbox'>
                     <input type='checkbox'
                     name='subscribe'
                     id='subscribe'
                     value='subscribe'></input>
-                    <span>It's okay to send me emails about Slack.</span>
+                    <span className='label-regcheckbox'>It's okay to send me emails about Slack.</span>
                 </div>
-                <div>
+                <div className='reg-terms'>
                     By continuing, you're agreeing to our <a href="https://slack.com/terms-of-service">Customer Terms of Service</a>, <a href="https://slack.com/privacy-policy">Privacy Policy</a>, and <a href="https://slack.com/cookie-policy">Cookie Policy</a>.
                 </div>
             </form>
         </div>
         <RegFooter/>
-      </>
+      </div>
   );
 }
 

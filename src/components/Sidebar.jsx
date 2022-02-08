@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 import {
   FiEdit,
   FiChevronDown,
@@ -6,35 +6,28 @@ import {
   FiMoreVertical,
   FiLock,
   FiPlus,
-} from 'react-icons/fi'
-import { IoChatbubblesOutline, IoChevronDownOutline } from 'react-icons/io5'
-import { BsChatText } from 'react-icons/bs'
-import avatar from '../avatar-placeholder.png'
-import Messages from './Messages/Messages'
-import RecentDms from './Users/RecentDms'
-import Channel from './Channel/Channel'
-import { Link, useNavigate, useParams } from 'react-router-dom'
+} from "react-icons/fi";
+import { IoChatbubblesOutline, IoChevronDownOutline } from "react-icons/io5";
+import { BsChatText } from "react-icons/bs";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import RecentDms from "../components/Users/RecentDms";
 
-const Sidebar = () => {
-  let navigate = useNavigate()
-  let { uid } = useParams()
-  let user_ids = []
-
-  const handleOpenNewChannel = () => {
-    // setNewChannelModalOpen(true)
-  }
-
+const Sidebar = ({ handleOpenNewChannel, headers }) => {
+  let navigate = useNavigate();
+  let { uid } = useParams();
+  let user_ids = [];
+  console.log(headers)
   return (
     <nav className="sidebar-container">
       <div className="sidebar-header">
         <button
           className="team-name-button"
           onClick={() => {
-            sessionStorage.clear()
-            navigate('/login')
+            sessionStorage.clear();
+            navigate("/login");
           }}
         >
-          FakeLogout <FiChevronDown />
+          Group 3 <FiChevronDown />
         </button>
 
         <Link to={`${uid}/new-message`}>
@@ -70,11 +63,11 @@ const Sidebar = () => {
           </div>
           <ul className="channels">
             <li>
-              <FiLock size={'0.8em'} />
+              <FiLock size={"0.8em"} />
               <span>batch15</span>
             </li>
             <li>
-              <FiLock size={'0.8em'} />
+              <FiLock size={"0.8em"} />
               <span>batch16</span>
             </li>
           </ul>
@@ -87,11 +80,13 @@ const Sidebar = () => {
               <FiPlus />
             </div>
           </div>
-          <RecentDms />
+
+            <RecentDms loginData={headers} />
+
         </li>
       </ul>
     </nav>
-  )
-}
+  );
+};
 
-export default Sidebar
+export default Sidebar;

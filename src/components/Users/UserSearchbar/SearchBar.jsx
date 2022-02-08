@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { getAllUsers } from '.././api-users.js'
+import { getAllUsers } from '../../../api/api-users'
 import './SearchBar.scss'
 import avatar from '../../../avatar-placeholder.png'
 import { NavLink, useParams } from 'react-router-dom'

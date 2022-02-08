@@ -5,8 +5,10 @@ import { userLogin } from './../../api/api-auth'
 import LoginHeader from './LoginComponents/LoginHeader'
 import LoginFooter from './LoginComponents/LoginFooter'
 import Errors from '../../components/Errors/Errors'
+import { FcGoogle } from "react-icons/fc";
+import { AiFillApple } from "react-icons/ai";
 
-function Login({ authenticate }) {
+function Login({ authenticate, handleUserData }) {
   // Set input & error message states
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -36,15 +38,14 @@ function Login({ authenticate }) {
         if (response.status === 200) {
           sessionStorage.setItem(
             'userLoggedInDetails',
-            JSON.stringify(response.headers)
-          )
-          // setHeaders(response.headers)
+            JSON.stringify(response.headers));
           uid = response.data.data.id
-          console.log(uid)
-          setHasError(false)
-          reset()
-          authenticate()
-          navigate(`/${uid}`)
+          console.log(uid);
+          setHasError(false);
+          reset();
+          authenticate();
+          navigate(`/${uid}`);
+          handleUserData(response.data, response.headers);
         } else {
           setHasError(true)
         }
@@ -73,26 +74,29 @@ function Login({ authenticate }) {
   }
 
   return (
-    <>
+    <div className='auth'>
       <LoginHeader />
-      <Errors title="Check your login credentials.">
+      {hasError && <Errors title="Check your login credentials.">
         Review the information you have submitted and try again.
-      </Errors>
-      <div>
-        <div>
-          <h4>Sign in with Google</h4>
+      </Errors>}
+      <div className='login-btns-container'>
+        <div className='login-google'>
+          <div className='login-icon'><FcGoogle /></div>
+          <div>Sign in with Google</div>
         </div>
-        <div>
-          <h4>Sign in with Apple</h4>
+        <div className='login-apple'>
+          <div className='login-icon'><AiFillApple /></div>
+          <div>Sign in with Apple</div>
         </div>
-        <div>
-          <div></div>
-          <div>OR</div>
-          <div></div>
+        <div className='login-divider'>
+          <hr className='login-divider-line'/>
+          <div className='login-divider-or'>OR</div>
+          <hr className='login-divider-line'/>
         </div>
         <form onSubmit={handleSubmit}>
           <div>
             <input
+              className='input-auth'
               type="text"
               name="reg-email"
               id="reg-email"
@@ -105,6 +109,7 @@ function Login({ authenticate }) {
           </div>
           <div>
             <input
+              className='input-auth'
               type="password"
               name="setpw"
               id="setpw"
@@ -116,12 +121,15 @@ function Login({ authenticate }) {
             ></input>
           </div>
           <div>
-            <button onClick={handleClickSubmit}>Sign In</button>
+            <button className='auth-button'
+            onClick={handleClickSubmit}>
+              Sign In
+              </button>
           </div>
         </form>
       </div>
       <LoginFooter />
-    </>
+    </div>
   )
 }
 

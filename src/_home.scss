@@ -145,3 +145,35 @@
   background-color: $blue;
   font-weight: 500;
 }
+
+.logout-avatar {
+  position: absolute;
+  right: 16px;
+  top: 8px;
+}
+
+.logout-avatar-dropdown {
+  position: absolute;
+  top: 40px;
+  right: 16px;
+  width: 200px;
+  height: auto;
+  padding: 16px 8px;
+  background-color: $white;
+  color: $black;
+  border-radius: 4px;
+  cursor: pointer;
+
+  display: flex;
+  flex-direction: column;
+
+  li {
+    list-style: none;
+    padding: 4px 0;
+  }
+
+  hr {
+    margin: 8px 0;
+  }
+}
+
