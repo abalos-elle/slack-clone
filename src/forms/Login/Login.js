@@ -38,6 +38,7 @@ function Login({ authenticate }) {
             'userLoggedInDetails',
             JSON.stringify(response.headers)
           )
+          // setHeaders(response.headers)
           uid = response.data.data.id
           console.log(uid)
           setHasError(false)

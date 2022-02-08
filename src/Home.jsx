@@ -102,7 +102,10 @@ const Home = () => {
     <main className="main-container">
       <header className="searchbar-container">
         <p>Test: This is the home page for {uid}. </p>
-        <SearchBar className={'searchUser-container'} />
+        <SearchBar
+          className={'searchUser-container'}
+          searchNavLink={`${uid}/messages/`}
+        />
       </header>
       <Sidebar />
       <Outlet />

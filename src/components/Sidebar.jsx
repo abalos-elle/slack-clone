@@ -87,9 +87,7 @@ const Sidebar = () => {
               <FiPlus />
             </div>
           </div>
-          <Link to={`${uid}/messages`}>
-            <RecentDms />
-          </Link>
+          <RecentDms />
         </li>
       </ul>
     </nav>

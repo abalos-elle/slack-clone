@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { IoSend } from 'react-icons/io5'
 
-const SendMessage = ({ onClick, receiverName }) => {
+const SendMessage = ({ onClick, receiverName = '' }) => {
   const [input, setInput] = useState('')
 
   return (
