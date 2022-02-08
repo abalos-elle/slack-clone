@@ -2,13 +2,12 @@ import React, { useState, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import SendMessage from './SendMessage'
 import { sendMessage } from '../../api/api-message'
-import SearchBar from '../Users/UserSearchbar/SearchBar'
+import SearchBar from './SearchBar'
 import { getUserObject } from '../Users/getUserObject'
 
 const CreateNewMessage = () => {
   let navigate = useNavigate()
   let params = useParams()
-  const [messageDetails, setMessageDetails] = useState([])
   const [messageParams, setMessageParams] = useState({})
 
   useEffect(() => {
@@ -47,7 +46,10 @@ const CreateNewMessage = () => {
       <div className="messages-search-user">
         <p>To:</p>
         {/* change selection behavior later */}
-        <SearchBar className="messages-searchbar" searchNavLink={''} />
+        <SearchBar
+          className="messages-searchbar"
+          // headers={userHeaders}
+        />
       </div>
       <div className="empty-message-container"></div>
       <SendMessage

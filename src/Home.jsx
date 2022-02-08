@@ -21,7 +21,7 @@ const Home = ({ userData, userHeaders }) => {
   // Set states
   const [isNewChannelModalOpen, setNewChannelModalOpen] = useState(false)
   const [isAddMembersModalOpen, setAddMembersModalOpen] = useState(false)
-  
+
   // Channel details
   const [channels, setChannels] = useState('')
   const [name, setName] = useState('')
@@ -29,13 +29,12 @@ const Home = ({ userData, userHeaders }) => {
   // User details
   const [userdata, setUserdata] = useState('')
   const [headers, setHeaders] = useState('')
-  const [isSearchBarOpen, setSearchBarOpen] = useState(false);
-
+  const [isSearchBarOpen, setSearchBarOpen] = useState(false)
 
   //Open Search Bar
-   const handleOpenSearchBar = () => {
-    setSearchBarOpen(!isSearchBarOpen);
-  };
+  const handleOpenSearchBar = () => {
+    setSearchBarOpen(!isSearchBarOpen)
+  }
 
   // Open modal to add new channel
   const handleOpenNewChannel = () => {
@@ -58,10 +57,8 @@ const Home = ({ userData, userHeaders }) => {
   }
 
   // Open logout dropdown
- 
 
   // Close logout dropdown
-  
 
   // Create new channel
   const newChannel = (e) => {
@@ -128,7 +125,7 @@ const Home = ({ userData, userHeaders }) => {
   //   // Get all channels
   //   channelsGet(headers)
   //   .then(response => {
-  //     setChannels(response); 
+  //     setChannels(response);
   //   })
   //   .catch(err => console.log(err));
 
@@ -136,20 +133,19 @@ const Home = ({ userData, userHeaders }) => {
 
   return (
     <main className="main-container">
-       {isSearchBarOpen ? (
+      {isSearchBarOpen ? (
         <SearchBar
           handleOpenSearchBar={handleOpenSearchBar}
-          className={'searchUser-container'}
-          searchNavLink={`${uid}/messages/`}
           // headers={userHeaders}
         />
       ) : null}
 
-      <Header handleOpenSearchBar={handleOpenSearchBar}/>
-      <Sidebar handleOpenNewChannel={handleOpenNewChannel}
-      listChannels={channels}
-      userdata={userdata}
-      headers={headers}
+      <Header handleOpenSearchBar={handleOpenSearchBar} />
+      <Sidebar
+        handleOpenNewChannel={handleOpenNewChannel}
+        listChannels={channels}
+        userdata={userdata}
+        headers={headers}
       />
       <Outlet />
 
