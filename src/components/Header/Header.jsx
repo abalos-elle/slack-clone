@@ -29,7 +29,7 @@ const Header = ({handleOpenSearchBar}) => {
       <section className="header-search">
         <button className="header-search-btn" onClick={handleOpenSearchBar}>
           <FiSearch className="icon" />
-          <span>Search Avion School</span>
+          <span>Search Group 3</span>
         </button>
       </section>
 

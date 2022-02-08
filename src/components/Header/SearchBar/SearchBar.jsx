@@ -43,7 +43,7 @@ const SearchBar = ({handleOpenSearchBar}) =>  {
                 <div className="searchBar_input">
                     <FiSearch className="searchBar-icon" />
                     <input type="text" 
-                    placeholder="Search the log of All Conversation and Knowledge" onChange={handleUserInput}/>
+                    placeholder="Search User" onChange={handleUserInput}/>
                     <GrFormClose className="icon-close" onClick={handleOpenSearchBar} />
                 </div>
 
