@@ -31,3 +31,32 @@ export const getRecentDms = async () => {
     return error
   }
 }
+
+export const searchUser = async (searchString) => {
+  try {
+    const response = await axiosFetch.get("/api/v1/users/");
+    const userList = await response.data.data;
+    const filteredUsers = await userList.filter((user) =>
+      user.email.includes(searchString)
+    );
+    return filteredUsers;
+  } catch (error) {
+    return error;
+  }
+};
+
+export const getInteractedUsers = ({token, client, expiry, uid}) => {
+  return axios.get(
+    "http://206.189.91.54//api/v1/users/recent/",
+    {
+      headers:{
+        "access-token": token,
+        "client": client,
+        "expiry": expiry,
+        "uid": uid,
+      }
+    })
+    .then(response => response)
+    .then(result => result)
+    .catch(error => error)
+}

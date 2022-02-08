@@ -10,7 +10,8 @@ import {
 import { IoChatbubblesOutline, IoChevronDownOutline } from 'react-icons/io5'
 import { BsChatText } from 'react-icons/bs'
 import RecentDms from '../Users/RecentDms'
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom';
+import RecentDms from '../Users/RecentDms';
 
 const Sidebar = ({ handleOpenNewChannel, listChannels, userdata, headers }) => {
   let navigate = useNavigate()
@@ -80,7 +81,7 @@ const Sidebar = ({ handleOpenNewChannel, listChannels, userdata, headers }) => {
             </div>
           </div>
           <Link to={`${uid}/messages`}>
-            <RecentDms />
+            <>Hello wold</>
           </Link>
         </li>
       </ul>

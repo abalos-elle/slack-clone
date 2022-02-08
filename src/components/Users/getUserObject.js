@@ -1,4 +1,4 @@
-import { getAllUsers } from './api-users.js'
+import { getAllUsers } from '../../api/api-users'
 
 export const getUserObject = (uid) => {
   const user = getAllUsers()
