@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { getInteractedUsers } from '../../api/api-users'
 import avatar from '../../avatar-placeholder.png'
-import { NavLink, useNavigate, useParams } from "react-router-dom";
+import { NavLink, useNavigate, useParams } from 'react-router-dom'
 
 const RecentDms = () => {
   const [recentDms, setRecentDms] = useState([])
@@ -15,6 +15,7 @@ const RecentDms = () => {
       expiry: loginData.expiry,
       uid: loginData.uid
     };
+
 
     getInteractedUsers(headers)
     .then((data) => setRecentDms(data.data.data))
