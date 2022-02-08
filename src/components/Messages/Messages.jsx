@@ -39,7 +39,6 @@ const Messages = () => {
       .then((res) => {
         const messageData = res.data.data
         if (messageData && messageData.length > 0) {
-          console.log('getting messages', messageData)
           setMessageDetails(messageData.reverse())
         } else {
           setMessageDetails([])

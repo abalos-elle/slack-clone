@@ -402,37 +402,75 @@
   height: 52px;
   border-bottom: 1px solid #1d1c1d50;
   display: flex;
-  flex-direction: row;
-  align-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.messages-search-user p {
+  padding: 5px;
 }
 
 .messages-searchbar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   font-family: "Lato", sans-serif !important;
   font-size: 1rem !important;
   padding: 0;
   display: block !important;
   left: 310px !important;
 }
-.messages-searchbar ul {
+
+
+.messages-searchbar .userlist {
   background-color: #ffffff !important;
   border: 1px solid #1d1c1d50;
   border-radius: 10px;
   box-shadow: 3px 3px 20px 0px #1d1c1d50;
   position: absolute !important;
-  top: 1.9em;
-  left: -1.5em;
-  padding: 0 1em 1em 1em !important;
+  padding: 0.5em !important;
   overflow-y: scroll !important;
-  height: 15em;
-  width: 75em;
+  max-height: 15em;
+  width: 74em;
 }
-.messages-searchbar ul li {
-  padding: 10px !important;
+
+.messages-searchbar .userlist h3 {
+  font-size: 1rem;
+}
+
+
+.messages-searchbar .userlist a {
+  text-decoration: none;
+}
+
+.messages-searchbar .userlist a:visited {
+  text-decoration: none;
+}
+
+.messages-searchbar .userlist img {
+  height: 20px;
+  width: 20px;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+.messages-searchbar .userlist .filteredUsers {
+  padding: 10px 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 .messages-searchbar input {
   background-color: #ffffff !important;
   border: transparent !important;
-  padding: 5px;
+  padding: 0 1em;
 }
 .messages-searchbar input:focus {
   outline: none;

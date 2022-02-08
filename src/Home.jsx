@@ -139,6 +139,8 @@ const Home = ({ userData, userHeaders }) => {
        {isSearchBarOpen ? (
         <SearchBar
           handleOpenSearchBar={handleOpenSearchBar}
+          className={'searchUser-container'}
+          searchNavLink={`${uid}/messages/`}
           // headers={userHeaders}
         />
       ) : null}

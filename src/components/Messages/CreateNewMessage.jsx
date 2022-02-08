@@ -47,7 +47,7 @@ const CreateNewMessage = () => {
       <div className="messages-search-user">
         <p>To:</p>
         {/* change selection behavior later */}
-        <SearchBar className="messages-searchbar" onSelect={() => {}} />
+        <SearchBar className="messages-searchbar" searchNavLink={''} />
       </div>
       <div className="empty-message-container"></div>
       <SendMessage

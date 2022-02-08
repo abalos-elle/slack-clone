@@ -80,7 +80,9 @@ const Sidebar = ({ handleOpenNewChannel, headers }) => {
               <FiPlus />
             </div>
           </div>
+
             <RecentDms loginData={headers} />
+
         </li>
       </ul>
     </nav>
