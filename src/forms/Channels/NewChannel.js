@@ -9,7 +9,8 @@ function NewChannel({ name, description, handleSubmit, handleNameInput, handleDe
                 <label htmlFor='channel-name'>Name</label>
                 <div className='input-container'>
                     <span className='input-icon'><FiHash /></span>
-                    <input type='text'
+                    <input className='newchannel-input'
+                    type='text'
                     name='channel-name'
                     id='channel-name'
                     value={name}
@@ -21,7 +22,8 @@ function NewChannel({ name, description, handleSubmit, handleNameInput, handleDe
             <div className='label-input-container'>
                 <label htmlFor='channel-name-desc'>Description (optional)</label>
                 <div className='input-container'>
-                    <input type='text'
+                    <input className='newchannel-input'
+                    type='text'
                     name='channel-name-desc'
                     id='channel-name-desc'
                     value={description}
@@ -30,7 +32,7 @@ function NewChannel({ name, description, handleSubmit, handleNameInput, handleDe
                 </div>
                 <div className='input-bottom-desc'>What's this channel about?</div>
             </div>
-            <div>
+            <div className='btn-container'>
                 <button className='btn-rectangle-large'
                 onClick={handleClick}>
                     Create
