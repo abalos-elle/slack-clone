@@ -21,7 +21,7 @@ const RecentDms = () => {
     .catch((err) => console.log("Fetch Interacted Users Error: ", err));
 
 console.log(loginData)
-  }, [])
+  }, [recentDms])
 
   console.log(recentDms)
 
