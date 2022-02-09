@@ -5,8 +5,8 @@ import { userLogin } from './../../api/api-auth'
 import LoginHeader from './LoginComponents/LoginHeader'
 import LoginFooter from './LoginComponents/LoginFooter'
 import Errors from '../../components/Errors/Errors'
-import { FcGoogle } from "react-icons/fc";
-import { AiFillApple } from "react-icons/ai";
+import { FcGoogle } from 'react-icons/fc'
+import { AiFillApple } from 'react-icons/ai'
 
 function Login({ authenticate, handleUserData, handleUserHeaders }) {
   // Set input & error message states
@@ -34,18 +34,20 @@ function Login({ authenticate, handleUserData, handleUserHeaders }) {
     // Invoke API for user login
     userLogin(userDetails)
       .then((response) => {
-        handleUserData(response.data);
-        handleUserHeaders(response.headers);
+        handleUserData(response.data)
+        handleUserHeaders(response.headers)
         if (response.status === 200) {
           sessionStorage.setItem(
             'userLoggedInDetails',
-            JSON.stringify(response.headers));
+            JSON.stringify(response.headers)
+          )
           uid = response.data.data.id
-          console.log(uid);
-          setHasError(false);
-          reset();
-          authenticate();
-          navigate(`/${uid}`);
+          console.log('login uid', uid)
+          setHasError(false)
+          reset()
+          authenticate()
+          navigate(`/${uid}`)
+          window.location.reload()
         } else {
           setHasError(true)
         }
@@ -74,29 +76,35 @@ function Login({ authenticate, handleUserData, handleUserHeaders }) {
   }
 
   return (
-    <div className='auth'>
+    <div className="auth">
       <LoginHeader />
-      {hasError && <Errors title="Check your login credentials.">
-        Review the information you have submitted and try again.
-      </Errors>}
-      <div className='login-btns-container'>
-        <div className='login-google'>
-          <div className='login-icon'><FcGoogle /></div>
+      {hasError && (
+        <Errors title="Check your login credentials.">
+          Review the information you have submitted and try again.
+        </Errors>
+      )}
+      <div className="login-btns-container">
+        <div className="login-google">
+          <div className="login-icon">
+            <FcGoogle />
+          </div>
           <div>Sign in with Google</div>
         </div>
-        <div className='login-apple'>
-          <div className='login-icon'><AiFillApple /></div>
+        <div className="login-apple">
+          <div className="login-icon">
+            <AiFillApple />
+          </div>
           <div>Sign in with Apple</div>
         </div>
-        <div className='login-divider'>
-          <hr className='login-divider-line'/>
-          <div className='login-divider-or'>OR</div>
-          <hr className='login-divider-line'/>
+        <div className="login-divider">
+          <hr className="login-divider-line" />
+          <div className="login-divider-or">OR</div>
+          <hr className="login-divider-line" />
         </div>
         <form onSubmit={handleSubmit}>
           <div>
             <input
-              className='input-auth'
+              className="input-auth"
               type="text"
               name="reg-email"
               id="reg-email"
@@ -109,7 +117,7 @@ function Login({ authenticate, handleUserData, handleUserHeaders }) {
           </div>
           <div>
             <input
-              className='input-auth'
+              className="input-auth"
               type="password"
               name="setpw"
               id="setpw"
@@ -121,10 +129,9 @@ function Login({ authenticate, handleUserData, handleUserHeaders }) {
             ></input>
           </div>
           <div>
-            <button className='auth-button'
-            onClick={handleClickSubmit}>
+            <button className="auth-button" onClick={handleClickSubmit}>
               Sign In
-              </button>
+            </button>
           </div>
         </form>
       </div>
