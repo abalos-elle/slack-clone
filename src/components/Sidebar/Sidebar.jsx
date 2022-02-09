@@ -8,11 +8,14 @@ import {
 } from 'react-icons/fi'
 import { IoChatbubblesOutline, IoChevronDownOutline } from 'react-icons/io5'
 import { BsChatText } from 'react-icons/bs'
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import ChannelList from '../Channel/ChannelList';
+import RecentDms from '../Users/RecentDms'
 
-const Sidebar = ({ handleOpenNewChannel, channels, handleToggleRender }) => {
-  let { uid } = useParams();
+const Sidebar = ({ handleOpenNewChannel, channels, userdata, headers, handleToggleRender }) => {
+  let navigate = useNavigate()
+  let { uid } = useParams()
+  let user_ids = []
 
   // Create a function to display list of channels
   const displayChannels = channels ?
@@ -66,6 +69,7 @@ const Sidebar = ({ handleOpenNewChannel, channels, handleToggleRender }) => {
               <FiPlus onClick={handleOpenNewChannel} />
             </div>
           </div>
+          {/* TODO: insert list of user channels here */}
           <ul className="channels">
             {displayChannels}
           </ul>
@@ -78,9 +82,7 @@ const Sidebar = ({ handleOpenNewChannel, channels, handleToggleRender }) => {
               <FiPlus />
             </div>
           </div>
-          <Link to={`${uid}/messages`}>
-            <>Hello wold</>
-          </Link>
+          <RecentDms loginData={headers} />
         </li>
       </ul>
     </nav>
