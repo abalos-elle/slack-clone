@@ -35,7 +35,7 @@ function Login({ authenticate, handleUserData, handleUserHeaders }) {
     userLogin(userDetails)
       .then((response) => {
         handleUserData(response.data)
-        handleUserHeaders(response.headers)
+        // handleUserHeaders(response.headers)
         if (response.status === 200) {
           sessionStorage.setItem(
             'userLoggedInDetails',

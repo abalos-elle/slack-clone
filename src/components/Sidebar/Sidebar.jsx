@@ -9,32 +9,33 @@ import {
 import { IoChatbubblesOutline, IoChevronDownOutline } from 'react-icons/io5'
 import { BsChatText } from 'react-icons/bs'
 import { Link, useNavigate, useParams } from 'react-router-dom'
-import ChannelList from '../Channel/ChannelList';
+import ChannelList from '../Channel/ChannelList'
 import RecentDms from '../Users/RecentDms'
 
-const Sidebar = ({ handleOpenNewChannel, channels, userdata, headers, handleToggleRender }) => {
+const Sidebar = ({
+  handleOpenNewChannel,
+  channels,
+  userdata,
+  headers,
+  handleToggleRender,
+}) => {
   let navigate = useNavigate()
   let { uid } = useParams()
   let user_ids = []
 
   // Create a function to display list of channels
-  const displayChannels = channels ?
-  channels.map((channel, index) => {
-    return (
-      <ChannelList index={index}
-      name={channel.name}/>
-    )
-  })
-  : null
+  const displayChannels = channels
+    ? channels.map((channel, index) => {
+        return <ChannelList index={index} name={channel.name} key={index} />
+      })
+    : null
 
-  useEffect(() => {}, [handleToggleRender]);
+  useEffect(() => {}, [handleToggleRender])
 
   return (
     <nav className="sidebar-container">
       <div className="sidebar-header">
-        <button
-          className="team-name-button"
-        >
+        <button className="team-name-button">
           Avion School <FiChevronDown />
         </button>
 
@@ -69,10 +70,7 @@ const Sidebar = ({ handleOpenNewChannel, channels, userdata, headers, handleTogg
               <FiPlus onClick={handleOpenNewChannel} />
             </div>
           </div>
-          {/* TODO: insert list of user channels here */}
-          <ul className="channels">
-            {displayChannels}
-          </ul>
+          <ul className="channels">{displayChannels}</ul>
         </li>
         <li className="direct-messages-dropdown">
           <div className="direct-messages-dropdown-header">
@@ -89,4 +87,4 @@ const Sidebar = ({ handleOpenNewChannel, channels, userdata, headers, handleTogg
   )
 }
 
-export default Sidebar;
+export default Sidebar

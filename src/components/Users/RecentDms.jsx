@@ -9,50 +9,48 @@ const RecentDms = () => {
   const loginData = JSON.parse(sessionStorage.getItem('userLoggedInDetails'))
 
   useEffect(() => {
-   const headers = {
-      token: loginData["access-token"],
+    const headers = {
+      token: loginData['access-token'],
       client: loginData.client,
       expiry: loginData.expiry,
-      uid: loginData.uid
-    };
-
+      uid: loginData.uid,
+    }
 
     getInteractedUsers(headers)
-    .then((data) => setRecentDms(data.data.data))
-    .catch((err) => console.log("Fetch Interacted Users Error: ", err));
+      .then((data) => setRecentDms(data.data.data))
+      .catch((err) => console.log('Fetch Interacted Users Error: ', err))
 
-// console.log(loginData)
-  }, [recentDms])
+    // console.log(loginData)
+  }, [])
 
   // console.log(recentDms)
 
-  const userIds = recentDms.map((user) => user.id);
+  const userIds = recentDms.map((user) => user.id)
   // console.log(userIds)
   const filteredUsers = recentDms.filter(({ id }, index) => {
-        return !userIds.includes(id, index + 1);
-      })
+    return !userIds.includes(id, index + 1)
+  })
 
-    // console.log(filteredUsers);
+  // console.log(filteredUsers);
 
   const renderUsersList = filteredUsers
-  ? filteredUsers.map((user) => {
-      const { email, id } = user;
-      return (
-        <NavLink to={`/${params.uid}/messages/${id}`} key={id}>
-          <li>
+    ? filteredUsers.map((user, index) => {
+        const { email, id } = user
+        return (
+          <li
+            className={params.id === user.id ? 'nav-select' : null}
+            key={index}
+          >
             <img src={avatar} />
             <div className="online-status-on"></div>
-            <h3>{email}</h3>
+            <NavLink to={`/${params.uid}/messages/${id}`} key={index}>
+              <span>{email}</span>
+            </NavLink>
           </li>
-        </NavLink>
-      );
-    })
-  : null;
+        )
+      })
+    : null
 
-  return (
-    <ul className="direct-messages">
-      {renderUsersList}
-    </ul>
-  )
+  return <ul className="direct-messages">{renderUsersList}</ul>
 }
 export default RecentDms
