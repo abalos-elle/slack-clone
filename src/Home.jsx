@@ -9,7 +9,7 @@ import Logout from './components/Others/Logout/Logout'
 import LogoutDropdown from './components/Others/Logout/LogoutDropdown'
 
 import { Outlet } from 'react-router-dom'
-import Sidebar from './components/Sidebar'
+import Sidebar from './components/Sidebar/Sidebar'
 import Header from './components/Header/Header'
 import SearchBar from './components/Header/SearchBar/SearchBar'
 
