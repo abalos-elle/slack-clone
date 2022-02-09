@@ -8,7 +8,7 @@ import Errors from '../../components/Errors/Errors'
 import { FcGoogle } from "react-icons/fc";
 import { AiFillApple } from "react-icons/ai";
 
-function Login({ authenticate, handleUserData }) {
+function Login({ authenticate, handleUserData, handleUserHeaders }) {
   // Set input & error message states
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -34,7 +34,8 @@ function Login({ authenticate, handleUserData }) {
     // Invoke API for user login
     userLogin(userDetails)
       .then((response) => {
-        console.log(response)
+        handleUserData(response.data);
+        handleUserHeaders(response.headers);
         if (response.status === 200) {
           sessionStorage.setItem(
             'userLoggedInDetails',
@@ -45,7 +46,6 @@ function Login({ authenticate, handleUserData }) {
           reset();
           authenticate();
           navigate(`/${uid}`);
-          handleUserData(response.data, response.headers);
         } else {
           setHasError(true)
         }

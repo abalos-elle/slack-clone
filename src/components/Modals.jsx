@@ -4,7 +4,7 @@ import Buttons from './Buttons';
 
 function Modals({children, modalTitle, handleClose, modalSubtitle, btnClass, btnTitle, btnText}) {
   return (
-      <div className='modal-backdrop'>
+      <div className='modal-backdrop' onClick={handleClose}>
         <div className='modal-container'>
             <div className='modal-header'>
                 <div className='modal-header-title'>
