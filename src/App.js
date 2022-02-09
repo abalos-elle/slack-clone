@@ -11,19 +11,19 @@ import Channel from './components/Channel/Channel'
 
 function App() {
   // Set states for authentication and login responses
-  const [authenticated, setAuthenticated] = useState(null)
+  const [authenticated, setAuthenticated] = useState(false)
   const [userData, setUserData] = useState('')
   const [userHeaders, setUserHeaders] = useState('')
-  
+
   // Function to set user & header data to child components
   const handleUserData = (data) => {
-    console.log(data);
-    setUserData(data);
+    console.log(data)
+    setUserData(data)
   }
 
   const handleUserHeaders = (data) => {
-    console.log(data);
-    setUserHeaders(data);
+    console.log(data)
+    setUserHeaders(data)
   }
 
   // Updated to include dependency on authenticated, userData, userHeaders
@@ -41,15 +41,21 @@ function App() {
           <Route
             path="/login"
             element={
-            <Login authenticate={() => setAuthenticated(true)} 
-            handleUserData={handleUserData}/>}
+              <Login
+                authenticate={() => setAuthenticated(true)}
+                handleUserData={handleUserData}
+              />
+            }
           />
           <Route
             path="/"
             element={
-              <Login authenticate={() => setAuthenticated(true)} 
-              handleUserData={handleUserData}
-              handleUserHeaders={handleUserHeaders}/>}
+              <Login
+                authenticate={() => setAuthenticated(true)}
+                handleUserData={handleUserData}
+                handleUserHeaders={handleUserHeaders}
+              />
+            }
           />
           <Route path="/register" element={<Register />} />
         </>
@@ -64,13 +70,19 @@ function App() {
             <Route path=":uid/new-message/:id" element={<CreateNewMessage />} />
             <Route path=":uid/messages/:id" element={<Messages />} />
             <Route path=":uid/channels/:channelName" element={<Channel />} />
+            <Route path=":uid/channels/:id" element={<Channel />} />
           </Route>
         </>
       )}
-      <Route path='/logout/login' element={
-        <Login authenticate={() => setAuthenticated(false)} 
-        handleUserData={handleUserData}
-        handleUserHeaders={handleUserHeaders}/>}
+      <Route
+        path="/logout/login"
+        element={
+          <Login
+            authenticate={() => setAuthenticated(false)}
+            handleUserData={handleUserData}
+            handleUserHeaders={handleUserHeaders}
+          />
+        }
       />
       <Route path="/404" element={<DefaultErrorPage />} />
       <Route path="*" element={<DefaultErrorPage />} />
