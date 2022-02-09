@@ -1,28 +1,28 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
+import { FiAtSign, FiMoreVertical, FiPlus } from 'react-icons/fi'
 import {
-  FiEdit,
-  FiChevronDown,
-  FiAtSign,
-  FiMoreVertical,
-  FiPlus,
-} from 'react-icons/fi'
-import { IoChatbubblesOutline, IoChevronDownOutline } from 'react-icons/io5'
+  IoChatbubblesOutline,
+  IoChevronForwardOutline,
+  IoChevronDownOutline,
+} from 'react-icons/io5'
 import { BsChatText } from 'react-icons/bs'
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import ChannelList from '../Channel/ChannelList'
 import RecentDms from '../Users/RecentDms'
+import SidebarHeader from './SidebarHeader'
 
 const Sidebar = ({
   handleOpenNewChannel,
   channels,
-  userdata,
   headers,
   handleToggleRender,
 }) => {
   let navigate = useNavigate()
   let { uid } = useParams()
-  let user_ids = []
+  const [showChannelList, setShowChannelList] = useState(true)
+  const [showRecentDmList, setShowRecentDmList] = useState(true)
 
+  useEffect(() => {}, [handleToggleRender])
   // Create a function to display list of channels
   const displayChannels = channels
     ? channels.map((channel, index) => {
@@ -30,57 +30,67 @@ const Sidebar = ({
       })
     : null
 
-  useEffect(() => {}, [handleToggleRender])
+  const handleDMClick = () => {
+    navigate(`/${uid}/new-message`)
+  }
+  const staticList = [
+    { title: 'Threads', icon: <BsChatText /> },
+    { title: 'All DMs', icon: <IoChatbubblesOutline /> },
+    { title: 'Mentions & reactions', icon: <FiAtSign /> },
+    { title: 'More', icon: <FiMoreVertical /> },
+  ]
 
   return (
     <nav className="sidebar-container">
-      <div className="sidebar-header">
-        <button className="team-name-button">
-          Avion School <FiChevronDown />
-        </button>
+      <SidebarHeader />
 
-        <Link to={`${uid}/new-message`}>
-          <div className="compose-button">
-            <FiEdit />
-          </div>
-        </Link>
-      </div>
       <ul className="sidebar-menu">
-        <li className="menu-options">
-          <BsChatText />
-          <span>Threads</span>
-        </li>
-        <li className="menu-options">
-          <IoChatbubblesOutline />
-          <span>All DMs</span>
-        </li>
-        <li className="menu-options">
-          <FiAtSign />
-          <span>Mentions & reactions</span>
-        </li>
-        <li className="menu-options">
-          <FiMoreVertical />
-          <span>More</span>
-        </li>
+        {staticList.map((element, index) => {
+          return (
+            <li className="menu-options" key={index}>
+              {element.icon}
+              <span>{element.title}</span>
+            </li>
+          )
+        })}
+
         <li className="channels-dropdown">
           <div className="channels-dropdown-header">
-            <IoChevronDownOutline />
+            {showChannelList ? (
+              <IoChevronDownOutline
+                onClick={() => setShowChannelList(!showChannelList)}
+              />
+            ) : (
+              <IoChevronForwardOutline
+                onClick={() => setShowChannelList(!showChannelList)}
+              />
+            )}
             <span>Channels</span>
             <div className="sidebar-add-icon">
               <FiPlus onClick={handleOpenNewChannel} />
             </div>
           </div>
-          <ul className="channels">{displayChannels}</ul>
+          {showChannelList ? (
+            <ul className="channels">{displayChannels}</ul>
+          ) : null}
         </li>
         <li className="direct-messages-dropdown">
           <div className="direct-messages-dropdown-header">
-            <IoChevronDownOutline />
+            {showRecentDmList ? (
+              <IoChevronDownOutline
+                onClick={() => setShowRecentDmList(!showRecentDmList)}
+              />
+            ) : (
+              <IoChevronForwardOutline
+                onClick={() => setShowRecentDmList(!showRecentDmList)}
+              />
+            )}
             <span>Direct Messages</span>
             <div className="sidebar-add-icon">
-              <FiPlus />
+              <FiPlus onClick={handleDMClick} />
             </div>
           </div>
-          <RecentDms loginData={headers} />
+          {showRecentDmList ? <RecentDms loginData={headers} /> : null}
         </li>
       </ul>
     </nav>
