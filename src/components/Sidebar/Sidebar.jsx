@@ -6,7 +6,7 @@ import {
   IoChevronDownOutline,
 } from 'react-icons/io5'
 import { BsChatText } from 'react-icons/bs'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useNavigate, useParams, NavLink } from 'react-router-dom'
 import ChannelList from '../Channel/ChannelList'
 import RecentDms from '../Users/RecentDms'
 import SidebarHeader from './SidebarHeader'
@@ -49,7 +49,9 @@ const Sidebar = ({
           return (
             <li className="menu-options" key={index}>
               {element.icon}
-              <span>{element.title}</span>
+              <NavLink to={'/404'}>
+                <span>{element.title}</span>
+              </NavLink>
             </li>
           )
         })}
