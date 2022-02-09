@@ -7,7 +7,6 @@ import Modals from './components/Modals'
 import NewChannel from './forms/Channels/NewChannel'
 import Logout from './components/Others/Logout/Logout'
 import LogoutDropdown from './components/Others/Logout/LogoutDropdown'
-import { Outlet } from 'react-router-dom'
 import Sidebar from './components/Sidebar/Sidebar'
 import Header from './components/Header/Header'
 import SearchBar from './components/Header/SearchBar/SearchBar'
@@ -26,7 +25,7 @@ const Home = () => {
   const [channels, setChannels] = useState('')
   const [name, setName] = useState('')
   const [description, setDescription] = useState('')
-  
+
   //Open Search Bar
   const handleOpenSearchBar = () => {
     setSearchBarOpen(!isSearchBarOpen)
@@ -51,10 +50,10 @@ const Home = () => {
   const handleCloseAddMembers = () => {
     setAddMembersModalOpen(false)
   }
-  
+
   // Create new channel
   const newChannel = (e) => {
-    e.preventDefault();
+    e.preventDefault()
 
     // get userLoggedInDetails
     let userDetails = JSON.parse(sessionStorage.getItem('userLoggedInDetails'))
@@ -71,19 +70,19 @@ const Home = () => {
     // call API for creating a new channel
     channelCreate(newChannelDetails)
       .then((response) => {
-        console.log(response);
+        console.log(response)
         if (response.data.errors != null) {
-          console.log(response.config.data);
-          setHandleRender(!handleRender);
-          console.log(handleRender);
-          return response;
+          console.log(response.config.data)
+          setHandleRender(!handleRender)
+          console.log(handleRender)
+          return response
         }
       })
       .catch((error) => {
-        console.log(error);
-        return error;
+        console.log(error)
+        return error
       })
-    reset();
+    reset()
   }
 
   // Event handlers
@@ -104,15 +103,15 @@ const Home = () => {
   }
 
   const handleToggleRender = () => {
-    setHandleRender(!handleRender);
+    setHandleRender(!handleRender)
   }
 
   // Reset function
   const reset = () => {
-    setNewChannelModalOpen(false);
-    setAddMembersModalOpen(false);
-    setName('');
-    setDescription('');
+    setNewChannelModalOpen(false)
+    setAddMembersModalOpen(false)
+    setName('')
+    setDescription('')
   }
 
   useEffect(() => {
@@ -123,16 +122,15 @@ const Home = () => {
       token: userDetails['access-token'],
       client: userDetails.client,
       expiry: userDetails.expiry,
-      uid: userDetails.uid
+      uid: userDetails.uid,
     }
 
     // Get all channels
     channelsGet(headers)
-    .then(response => {
-      setChannels(response.data.data);
-    })
-    .catch(err => console.log(err));
-
+      .then((response) => {
+        setChannels(response.data.data)
+      })
+      .catch((err) => console.log(err))
   }, [handleRender])
 
   return (
