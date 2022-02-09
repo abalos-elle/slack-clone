@@ -1,35 +1,30 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
-import { useParams, useNavigate } from 'react-router-dom'
+import { useParams, Outlet } from 'react-router-dom'
 import { channelCreate, channelsGet } from './api/api-channels'
 // import SearchBar from './components/Users/UserSearchbar/SearchBar'
 import Modals from './components/Modals'
 import NewChannel from './forms/Channels/NewChannel'
 import Logout from './components/Others/Logout/Logout'
 import LogoutDropdown from './components/Others/Logout/LogoutDropdown'
-
-import { Outlet } from 'react-router-dom'
-import Sidebar from './components/Sidebar'
+import Sidebar from './components/Sidebar/Sidebar'
 import Header from './components/Header/Header'
 import SearchBar from './components/Header/SearchBar/SearchBar'
 
-const Home = ({ userData, userHeaders }) => {
+const Home = () => {
   // Variable definitions
-  let navigate = useNavigate()
   let { uid } = useParams()
 
   // Set states
   const [isNewChannelModalOpen, setNewChannelModalOpen] = useState(false)
   const [isAddMembersModalOpen, setAddMembersModalOpen] = useState(false)
+  const [handleRender, setHandleRender] = useState(false)
+  const [isSearchBarOpen, setSearchBarOpen] = useState(false)
 
   // Channel details
   const [channels, setChannels] = useState('')
   const [name, setName] = useState('')
   const [description, setDescription] = useState('')
-  // User details
-  const [userdata, setUserdata] = useState('')
-  const [headers, setHeaders] = useState('')
-  const [isSearchBarOpen, setSearchBarOpen] = useState(false)
 
   //Open Search Bar
   const handleOpenSearchBar = () => {
@@ -56,10 +51,6 @@ const Home = ({ userData, userHeaders }) => {
     setAddMembersModalOpen(false)
   }
 
-  // Open logout dropdown
-
-  // Close logout dropdown
-
   // Create new channel
   const newChannel = (e) => {
     e.preventDefault()
@@ -82,6 +73,8 @@ const Home = ({ userData, userHeaders }) => {
         console.log(response)
         if (response.data.errors != null) {
           console.log(response.config.data)
+          setHandleRender(!handleRender)
+          console.log(handleRender)
           return response
         }
       })
@@ -109,6 +102,10 @@ const Home = ({ userData, userHeaders }) => {
     newChannel(e)
   }
 
+  const handleToggleRender = () => {
+    setHandleRender(!handleRender)
+  }
+
   // Reset function
   const reset = () => {
     setNewChannelModalOpen(false)
@@ -117,19 +114,24 @@ const Home = ({ userData, userHeaders }) => {
     setDescription('')
   }
 
-  // useEffect(() => {
-  //   // Set user details after login
-  //   setHeaders(userHeaders);
-  //   setUserdata(userData);
+  useEffect(() => {
+    // Set user headers after login
+    let userDetails = JSON.parse(sessionStorage.getItem('userLoggedInDetails'))
 
-  //   // Get all channels
-  //   channelsGet(headers)
-  //   .then(response => {
-  //     setChannels(response);
-  //   })
-  //   .catch(err => console.log(err));
+    const headers = {
+      token: userDetails['access-token'],
+      client: userDetails.client,
+      expiry: userDetails.expiry,
+      uid: userDetails.uid,
+    }
 
-  // })
+    // Get all channels
+    channelsGet(headers)
+      .then((response) => {
+        setChannels(response.data.data)
+      })
+      .catch((err) => console.log(err))
+  }, [handleRender])
 
   return (
     <main className="main-container">
@@ -143,13 +145,10 @@ const Home = ({ userData, userHeaders }) => {
       <Header handleOpenSearchBar={handleOpenSearchBar} />
       <Sidebar
         handleOpenNewChannel={handleOpenNewChannel}
-        listChannels={channels}
-        userdata={userdata}
-        headers={headers}
+        channels={channels}
+        handleToggleRender={handleToggleRender}
       />
       <Outlet />
-
-      {/* <Channel handleOpen={handleOpenAddMembers}/> */}
 
       {/* Modal for adding a new channel  */}
       {isNewChannelModalOpen && (

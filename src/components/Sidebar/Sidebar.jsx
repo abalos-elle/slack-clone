@@ -1,33 +1,41 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import {
   FiEdit,
   FiChevronDown,
   FiAtSign,
   FiMoreVertical,
-  FiLock,
   FiPlus,
 } from 'react-icons/fi'
 import { IoChatbubblesOutline, IoChevronDownOutline } from 'react-icons/io5'
 import { BsChatText } from 'react-icons/bs'
+import { Link, useNavigate, useParams } from 'react-router-dom'
+import ChannelList from '../Channel/ChannelList';
 import RecentDms from '../Users/RecentDms'
-import { Link, useNavigate, useParams } from 'react-router-dom';
-import RecentDms from '../Users/RecentDms';
 
-const Sidebar = ({ handleOpenNewChannel, listChannels, userdata, headers }) => {
+const Sidebar = ({ handleOpenNewChannel, channels, userdata, headers, handleToggleRender }) => {
   let navigate = useNavigate()
   let { uid } = useParams()
+  let user_ids = []
+
+  // Create a function to display list of channels
+  const displayChannels = channels ?
+  channels.map((channel, index) => {
+    return (
+      <ChannelList index={index}
+      name={channel.name}/>
+    )
+  })
+  : null
+
+  useEffect(() => {}, [handleToggleRender]);
 
   return (
     <nav className="sidebar-container">
       <div className="sidebar-header">
         <button
           className="team-name-button"
-          onClick={() => {
-            sessionStorage.clear()
-            navigate('/login')
-          }}
         >
-          Group 3 <FiChevronDown />
+          Avion School <FiChevronDown />
         </button>
 
         <Link to={`${uid}/new-message`}>
@@ -61,15 +69,9 @@ const Sidebar = ({ handleOpenNewChannel, listChannels, userdata, headers }) => {
               <FiPlus onClick={handleOpenNewChannel} />
             </div>
           </div>
+          {/* TODO: insert list of user channels here */}
           <ul className="channels">
-            {/* <li>
-              <FiLock size={'0.8em'} />
-              <span>batch15</span>
-            </li>
-            <li>
-              <FiLock size={'0.8em'} />
-              <span>batch16</span>
-            </li> */}
+            {displayChannels}
           </ul>
         </li>
         <li className="direct-messages-dropdown">
@@ -80,13 +82,11 @@ const Sidebar = ({ handleOpenNewChannel, listChannels, userdata, headers }) => {
               <FiPlus />
             </div>
           </div>
-          <Link to={`${uid}/messages`}>
-            <>Hello wold</>
-          </Link>
+          <RecentDms loginData={headers} />
         </li>
       </ul>
     </nav>
   )
 }
 
-export default Sidebar
+export default Sidebar;
