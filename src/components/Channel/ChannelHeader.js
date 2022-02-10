@@ -1,24 +1,20 @@
 import React from 'react';
 import Buttons from './../Buttons';
-import { FiLock, FiChevronDown } from 'react-icons/fi';
-import { useParams } from 'react-router-dom';
+import { FaAngleDown, FaLock, FaUserPlus } from "react-icons/fa";
 
-function ChannelHeader({ handleOpen }) {
-    let {channelName} = useParams();
-
+function ChannelHeader({ handleOpen, channelName }) {
     return (
-        <div className='Channel-header-container'
-        onClick={handleOpen}>
+        <div className='Channel-header-container'>
             <div className='btn-container'>
                 <Buttons className={`btn-channel-title btn-rectangle-medium`} title='btn-channel-title'>
-                    <span><FiLock/></span>
-                    <span>{channelName}</span>
-                    <span><FiChevronDown/></span>
+                    <span className='lock'><FaLock/></span>
+                    <span className='channelname'>{channelName}</span>
+                    <span className='chevrondown'><FaAngleDown/></span>
                 </Buttons>
             </div>
-            <div className='btn-container'>
-                <Buttons className={`btn-channel-addUsers btn-rectangle-medium`} title='btn-channel-addUsers'>
-                    <span>Add Members</span>
+            <div className='btn-container'onClick={handleOpen}>
+                <Buttons className={`btn-channel-addUsers btn-rectangle-medium`} title='btn-channel-addUsers' >
+                    <span className='icon-addmembers'><FaUserPlus /></span>
                 </Buttons>
             </div>
         </div>

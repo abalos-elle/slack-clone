@@ -17,7 +17,7 @@ const SendMessage = ({ onClick, receiverName = '' }) => {
           {/* <div className="send-message-buttons-container"> */}
           <button
             className={`send-message-button${input === '' ? '' : '-active'}`}
-            type="submit"
+            type="button"
             onClick={() => {
               onClick(input)
               setInput('')

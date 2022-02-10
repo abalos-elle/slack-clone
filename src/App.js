@@ -44,6 +44,7 @@ function App() {
               <Login
                 authenticate={() => setAuthenticated(true)}
                 handleUserData={handleUserData}
+                handleUserHeaders={handleUserHeaders}
               />
             }
           />
@@ -64,12 +65,11 @@ function App() {
       {authenticated && (
         <>
           <Route path="/" element={<Home />}>
-            {/* TODO: add logout (fake logout created) */}
             <Route path=":uid/" element={<CreateNewMessage />} />
             <Route path=":uid/new-message/" element={<CreateNewMessage />} />
             <Route path=":uid/new-message/:id" element={<CreateNewMessage />} />
             <Route path=":uid/messages/:id" element={<Messages />} />
-            <Route path=":uid/channels/:channelName" element={<Channel />} />
+            <Route path=":uid/channels/:channelId" element={<Channel />} />
             <Route path=":uid/channels/:id" element={<Channel />} />
           </Route>
         </>

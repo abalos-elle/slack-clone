@@ -5,19 +5,16 @@ import { getMessages, sendMessage } from '../../api/api-message'
 import moment from 'moment'
 import { useParams } from 'react-router-dom'
 import { getUserObject } from '../Users/getUserObject'
-import { FiChevronDown } from 'react-icons/fi'
-import avatar from '../../avatar-placeholder.png'
 import MessagesHeader from './MessagesHeader'
-import { IoConstructOutline } from 'react-icons/io5'
 
 const Messages = ({ displayHeader, receiverClass, receiverID }) => {
-  let params = useParams()
+  let {id, channelId} = useParams()
   const [messageDetails, setMessageDetails] = useState([])
   const [messageParams, setMessageParams] = useState({})
 
   useEffect(() => {
-    if (params.id) {
-      getUserObject(params.id)
+    if (id) {
+      getUserObject(id)
         .then((response) => {
           setMessageParams({
             receiver_id: response.id,
@@ -27,13 +24,13 @@ const Messages = ({ displayHeader, receiverClass, receiverID }) => {
         })
         .catch((error) => console.log(error))
     }
-    if (params.channelName) {
+    if (channelId) {
       setMessageParams({
         receiver_id: receiverID,
         receiver_class: receiverClass,
       })
     }
-  }, [params.id, params.channelName])
+  }, [id, channelId])
 
   useEffect(() => {
     if (messageParams) {
