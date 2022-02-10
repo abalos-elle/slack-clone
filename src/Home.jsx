@@ -1,19 +1,16 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
-import { useParams, Outlet } from 'react-router-dom'
+import { Outlet } from 'react-router-dom'
 import { channelCreate, channelsGet } from './api/api-channels'
-// import SearchBar from './components/Users/UserSearchbar/SearchBar'
 import Modals from './components/Modals'
 import NewChannel from './forms/Channels/NewChannel'
-import Logout from './components/Others/Logout/Logout'
-import LogoutDropdown from './components/Others/Logout/LogoutDropdown'
 import Sidebar from './components/Sidebar/Sidebar'
 import Header from './components/Header/Header'
 import SearchBar from './components/Header/SearchBar/SearchBar'
 
 const Home = () => {
   // Variable definitions
-  let { uid } = useParams()
+  // let { uid } = useParams()
 
   // Set states
   const [isNewChannelModalOpen, setNewChannelModalOpen] = useState(false)

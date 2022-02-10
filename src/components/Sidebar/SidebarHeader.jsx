@@ -1,6 +1,6 @@
 import React from 'react'
 import { FiChevronDown, FiEdit } from 'react-icons/fi'
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 
 const SidebarHeader = () => {
   // let navigate = useNavigate()
