@@ -110,3 +110,22 @@ export const channelAddMember = async ({channelId, member_id, headers:{token, cl
         return error;
     }
 }
+
+// Connect to API to search for a particular user
+export const getUser = async ({id, headers: {token, client, expiry, uid}}) => {
+    return axiosFetch.get(
+        `/api/v1/users`,
+        {
+            headers: {
+                "access-token": token,
+                client,
+                expiry,
+                uid
+            }
+        })
+        .then(response => response)
+        .then(res => {
+            return res.data.data.filter(data => data.id === id)
+        })
+        .catch(error => error)
+}

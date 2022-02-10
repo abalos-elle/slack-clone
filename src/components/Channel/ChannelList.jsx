@@ -1,19 +1,14 @@
-import React from 'react';
-import { Link, useParams } from 'react-router-dom'
+import React from 'react'
 import { FiLock } from 'react-icons/fi'
 
-function ChannelList({ index, name }) {
-    let { uid, channelName } = useParams();
+function ChannelList({ name, index }) {
 
-    return (
-        <Link to={`${uid}/channels/${channelName}`}>
-            <li key={index}
-            title={name}>
-                <FiLock />
-                <span>{name}</span>
-            </li>
-        </Link>
-    );
+  return (
+    <li key={index} title={name}>
+      <FiLock />
+      <span>{name}</span>
+    </li>
+  )
 }
 
-export default ChannelList;
+export default ChannelList

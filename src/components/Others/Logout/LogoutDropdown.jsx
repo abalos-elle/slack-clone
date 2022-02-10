@@ -5,7 +5,7 @@ function LogoutDropdown({ handleClose }) {
   let navigate = useNavigate()
   const signout = () => {
     sessionStorage.clear()
-    navigate('/logout/login')
+    navigate('/')
     window.location.reload()
   }
 

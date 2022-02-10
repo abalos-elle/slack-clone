@@ -5,19 +5,17 @@ import { getMessages, sendMessage } from '../../api/api-message'
 import moment from 'moment'
 import { useParams } from 'react-router-dom'
 import { getUserObject } from '../Users/getUserObject'
-import { FiChevronDown } from 'react-icons/fi'
-import avatar from '../../avatar-placeholder.png'
+import MessagesHeader from './MessagesHeader'
 
-const Messages = () => {
-  let params = useParams()
+const Messages = ({ displayHeader, receiverClass, receiverID }) => {
+  let {id, channelId} = useParams()
   const [messageDetails, setMessageDetails] = useState([])
   const [messageParams, setMessageParams] = useState({})
 
   useEffect(() => {
-    if (params.id) {
-      getUserObject(params.id)
+    if (id) {
+      getUserObject(id)
         .then((response) => {
-          console.log(response)
           setMessageParams({
             receiver_id: response.id,
             receiver_class: 'User',
@@ -26,7 +24,13 @@ const Messages = () => {
         })
         .catch((error) => console.log(error))
     }
-  }, [params.id])
+    if (channelId) {
+      setMessageParams({
+        receiver_id: receiverID,
+        receiver_class: receiverClass,
+      })
+    }
+  }, [id, channelId])
 
   useEffect(() => {
     if (messageParams) {
@@ -60,15 +64,11 @@ const Messages = () => {
       })
   }
 
+  const messagesHeader = <MessagesHeader messageGroupName={messageParams.uid} />
+
   return (
     <div className="messages-container">
-      <div className="messages-container-header">
-        <img src={avatar} />
-        <button className="messages-receiver-button">
-          {messageParams.uid}
-          <FiChevronDown />
-        </button>
-      </div>
+      {displayHeader ? displayHeader : messagesHeader}
       <div className="messages-scroll-container">
         {messageDetails && messageDetails.length > 0
           ? messageDetails.map((message, index) => {
@@ -84,7 +84,9 @@ const Messages = () => {
           : null}
       </div>
       <SendMessage
-        receiverName={messageParams.uid}
+        receiverName={
+          messageParams.uid ? messageParams.uid : messageParams.receiverID
+        }
         onClick={(input) => {
           handleSendMessage(input)
         }}

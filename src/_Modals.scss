@@ -6,12 +6,13 @@
     top: 0;
     left: 0;
     background: $black-90;
+    z-index: 3;
 }
 
 .modal-container {
     margin: 120px auto;
     padding: 12px 24px 24px 24px;
-    max-width: 520px;
+    width: 520px;
     
     display: flex;
     flex-direction: column;
@@ -19,6 +20,7 @@
     
     background-color: $white;
     border-radius: 12px;
+    z-index: 10;
 }
 
 .modal-header-title {
@@ -59,6 +61,7 @@
     transition: border 80ms ease-out,box-shadow 80ms ease-out;
     box-sizing: border-box;
     margin: 0 0 20px;
+    z-index: 12;
 }
 
 .newchannel-input {
@@ -67,6 +70,7 @@
     outline: none;
     font-size: 18px;
     line-height: 1.33333333;
+    z-index: 20;
 
     ::placeholder{
         color: #696969;
