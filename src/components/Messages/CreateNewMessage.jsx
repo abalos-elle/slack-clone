@@ -7,12 +7,12 @@ import { getUserObject } from '../Users/getUserObject'
 
 const CreateNewMessage = () => {
   let navigate = useNavigate()
-  let params = useParams()
+  let { uid, id } = useParams()
   const [messageParams, setMessageParams] = useState({})
 
   useEffect(() => {
-    if (params.id) {
-      getUserObject(params.id)
+    if (id) {
+      getUserObject(id)
         .then((response) => {
           console.log(response)
           setMessageParams({
@@ -23,7 +23,7 @@ const CreateNewMessage = () => {
         })
         .catch((error) => console.log(error))
     }
-  }, [params.id])
+  }, [id])
 
   const handleSendMessage = (input) => {
     sendMessage({
@@ -34,7 +34,7 @@ const CreateNewMessage = () => {
       .then((res) => console.log(res))
       .catch((error) => console.log(error))
       .finally(() => {
-        navigate(`../${params.uid}/messages/${params.id}`)
+        navigate(`../${uid}/messages/${id}`)
       })
   }
 
@@ -48,6 +48,7 @@ const CreateNewMessage = () => {
         {/* change selection behavior later */}
         <SearchBar
           className="messages-searchbar"
+          type='messages'
           // headers={userHeaders}
         />
       </div>

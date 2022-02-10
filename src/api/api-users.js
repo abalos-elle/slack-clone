@@ -45,7 +45,7 @@ export const searchUser = async (searchString) => {
   }
 };
 
-export const getInteractedUsers = ({token, client, expiry, uid}) => {
+export const getInteractedUsers = async ({token, client, expiry, uid}) => {
   return axios.get(
     "http://206.189.91.54//api/v1/users/recent/",
     {
