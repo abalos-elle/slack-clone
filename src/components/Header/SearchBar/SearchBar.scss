@@ -1,3 +1,5 @@
+@import '../../../home';
+
 .searchBar_container{
   width: 100vw;
   height: 100%;
@@ -8,6 +10,9 @@
   align-items: flex-start;
   justify-content: center;
   overflow-y: hidden;
+  a{
+    text-decoration: none;
+  }
 }
 
 .searchBar_items{
@@ -24,7 +29,7 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  border-bottom: 1px solid var(--color-gray-light);
+  border-bottom: 1px solid #D3D3D3;
   >input{
       width: 90%;
       outline: none;
@@ -33,6 +38,9 @@
       font-size: 1.4rem;
       font-weight: 300;
       padding: .5rem;
+      &::placeholder {
+        font-size: 1rem;
+      }
   }
 
   >.searchBar-close-icon{
@@ -55,7 +63,7 @@
   padding: 2rem;
   height: 17vh;
   font-size: 1.3rem;
-  color: var(--font-color-light-gray);
+  color: #D3D3D3;
 }
 
 .searchBar-body-buttons{
@@ -76,7 +84,7 @@
 }
 .searchBar-body-buttons > button:hover{
   background-color: rgba(0, 0, 255, 0.705);
-  color: var(--color-white);
+  color: #ffffff;
 }
 
 .searchBar_footer{
@@ -100,29 +108,31 @@
       padding: 1rem;
       padding-left: 3rem;
       cursor: pointer;
-      >h3{
+      h3{
           font-family: inherit;
-          font-size: 1.5rem;
+          font-size: 1rem;
           font-weight: 700;
           padding-left: 1rem;
           letter-spacing: .2px;
-          color: var(--font-color-black)
+          color: $black;
         }
       
         >img{
           background-size: cover;
           overflow: hidden;
           border-radius: 5px;
-          height: 2rem;
+          height: 1.5rem;
+          color: black;
         }
-  }
-
-  >.searchBar_results_items:hover{
-      background-color: #135999;
-      >h3{
-          color: var(--color-white);
+        &:hover{
+          background-color: #135999;
+          >h3{
+              color: $white;
+          }
       }
   }
+
+ 
 }
 
 .footer-items{

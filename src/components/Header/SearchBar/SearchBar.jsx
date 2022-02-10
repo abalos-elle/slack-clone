@@ -36,8 +36,6 @@ const SearchBarTemp = ({ handleOpenSearchBar }) => {
 
   }, []);
 
-  console.log(itemsList);
-
   const searchResults = () => {
 
 
@@ -63,7 +61,7 @@ const SearchBarTemp = ({ handleOpenSearchBar }) => {
                 to={`/${params.uid}/messages/${result.id}`}
                 key={result.id}
               >
-                <div className="searchBar_results_items">
+                <div className="searchBar_results_items" onClick={handleOpenSearchBar}>
                   <img src={avatar} />
                   <h3>{result.email}</h3>
                 </div>
@@ -72,11 +70,11 @@ const SearchBarTemp = ({ handleOpenSearchBar }) => {
           } else {
             return (
               <NavLink
-                to={`/${params.uid}/messages/${result.id}`}
+                to={`/${params.uid}/channels/${result.id}`}
                 key={result.id}
               >
-                <div className="searchBar_results_items">
-                  <CgLock />
+                <div className="searchBar_results_items" onClick={handleOpenSearchBar}>
+                  <CgLock color="black"/>
                   <h3>{result.name}</h3>
                 </div>
               </NavLink>
@@ -96,7 +94,7 @@ const SearchBarTemp = ({ handleOpenSearchBar }) => {
           <input
             type="text"
             autoFocus
-            placeholder="Search User"
+            placeholder="Input Search. Beep boop."
             onChange={(event) => {
               setSearchInput(event.target.value);
             }}
