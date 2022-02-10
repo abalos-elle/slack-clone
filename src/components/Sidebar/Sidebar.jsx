@@ -15,7 +15,7 @@ const Sidebar = ({
   handleOpenNewChannel,
   channels,
   headers,
-  handleToggleRender,
+  handleToggleRender
 }) => {
   let navigate = useNavigate()
   let { uid } = useParams()
@@ -26,7 +26,13 @@ const Sidebar = ({
   // Create a function to display list of channels
   const displayChannels = channels
     ? channels.map((channel, index) => {
-        return <ChannelList index={index} name={channel.name} key={index} />
+        return (
+          <NavLink to={`${uid}/channels/${channel.id}`} key={index}>
+            <ChannelList index={index} 
+            name={channel.name} 
+            key={index} />
+          </NavLink>
+        )
       })
     : null
 

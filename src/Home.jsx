@@ -1,28 +1,22 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
-import { useParams, Outlet } from 'react-router-dom'
+import { Outlet } from 'react-router-dom'
 import { channelCreate, channelsGet } from './api/api-channels'
-// import SearchBar from './components/Users/UserSearchbar/SearchBar'
 import Modals from './components/Modals'
 import NewChannel from './forms/Channels/NewChannel'
-import Logout from './components/Others/Logout/Logout'
-import LogoutDropdown from './components/Others/Logout/LogoutDropdown'
 import Sidebar from './components/Sidebar/Sidebar'
 import Header from './components/Header/Header'
 import SearchBar from './components/Header/SearchBar/SearchBar'
 
 const Home = () => {
-  // Variable definitions
-  let { uid } = useParams()
-
   // Set states
   const [isNewChannelModalOpen, setNewChannelModalOpen] = useState(false)
-  const [isAddMembersModalOpen, setAddMembersModalOpen] = useState(false)
   const [handleRender, setHandleRender] = useState(false)
   const [isSearchBarOpen, setSearchBarOpen] = useState(false)
 
   // Channel details
   const [channels, setChannels] = useState('')
+  const [channelIds, setChannelIds] = useState('')
   const [name, setName] = useState('')
   const [description, setDescription] = useState('')
 
@@ -39,16 +33,6 @@ const Home = () => {
   // Close modal to add new channel
   const handleCloseNewChannel = () => {
     setNewChannelModalOpen(false)
-  }
-
-  // Open modal to add new channel
-  const handleOpenAddMembers = () => {
-    setAddMembersModalOpen(true)
-  }
-
-  // Close modal to add new channel
-  const handleCloseAddMembers = () => {
-    setAddMembersModalOpen(false)
   }
 
   // Create new channel
@@ -74,7 +58,6 @@ const Home = () => {
         if (response.data.errors != null) {
           console.log(response.config.data)
           setHandleRender(!handleRender)
-          console.log(handleRender)
           return response
         }
       })
@@ -82,7 +65,8 @@ const Home = () => {
         console.log(error)
         return error
       })
-    reset()
+    reset();
+    window.location.reload();
   }
 
   // Event handlers
@@ -109,7 +93,6 @@ const Home = () => {
   // Reset function
   const reset = () => {
     setNewChannelModalOpen(false)
-    setAddMembersModalOpen(false)
     setName('')
     setDescription('')
   }
@@ -125,10 +108,16 @@ const Home = () => {
       uid: userDetails.uid,
     }
 
-    // Get all channels
+    // Get all channels and channel Ids
     channelsGet(headers)
       .then((response) => {
-        setChannels(response.data.data)
+        let channelObj = response.data.data
+        setChannels(channelObj);
+        return channelObj
+      })
+      .then(channelObj => {
+        let channelIdsArray = channelObj.map(array => array.id);
+        setChannelIds(channelIdsArray);
       })
       .catch((err) => console.log(err))
   }, [handleRender])
@@ -138,7 +127,6 @@ const Home = () => {
       {isSearchBarOpen ? (
         <SearchBar
           handleOpenSearchBar={handleOpenSearchBar}
-          // headers={userHeaders}
         />
       ) : null}
 
@@ -150,6 +138,7 @@ const Home = () => {
       />
       <Outlet />
 
+      
       {/* Modal for adding a new channel  */}
       {isNewChannelModalOpen && (
         <Modals
@@ -165,13 +154,6 @@ const Home = () => {
             name={name}
             description={description}
           />
-        </Modals>
-      )}
-
-      {/* Modal for adding members to a channel */}
-      {isAddMembersModalOpen && (
-        <Modals modalTitle={`#channelname`} handleClose={handleCloseAddMembers}>
-          <SearchBar />
         </Modals>
       )}
     </main>
