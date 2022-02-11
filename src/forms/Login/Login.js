@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useNavigate, useParams, NavLink } from 'react-router-dom'
 import { userLogin } from './../../api/api-auth'
 import LoginHeader from './LoginComponents/LoginHeader'
 import LoginFooter from './LoginComponents/LoginFooter'
@@ -53,7 +53,6 @@ function Login({ authenticate, handleUserData, handleUserHeaders }) {
         }
       })
       .catch((error) => {
-        console.log(error)
         setHasError(true)
       })
   }
@@ -78,11 +77,6 @@ function Login({ authenticate, handleUserData, handleUserHeaders }) {
   return (
     <div className="auth">
       <LoginHeader />
-      {hasError && (
-        <Errors title="Check your login credentials.">
-          Review the information you have submitted and try again.
-        </Errors>
-      )}
       <div className="login-btns-container">
         <div className="login-google">
           <div className="login-icon">
@@ -128,6 +122,11 @@ function Login({ authenticate, handleUserData, handleUserHeaders }) {
               required
             ></input>
           </div>
+          {hasError && (
+            <Errors title="warning-red">
+              Review the information you have submitted and try again.
+            </Errors>
+          )}
           <div>
             <button
               className="auth-button"
@@ -138,6 +137,9 @@ function Login({ authenticate, handleUserData, handleUserHeaders }) {
             </button>
           </div>
         </form>
+        <div className="register-link">
+          <NavLink to={'./register'}>Don't have an account?</NavLink>
+        </div>
       </div>
       <LoginFooter />
     </div>

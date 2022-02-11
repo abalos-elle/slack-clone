@@ -64,7 +64,8 @@
   margin: 36px 12px 12px 12px;
 }
 
-.login-btns-container .login-google, .login-btns-container .login-apple {
+.login-btns-container .login-google,
+.login-btns-container .login-apple {
   margin-bottom: 16px;
   width: 100%;
   padding: 4px;
@@ -165,10 +166,10 @@
   line-height: 1.33333333;
   border-radius: 4px;
   border: 1px solid rgba(29, 28, 29, 0.3);
-  -webkit-transition: border 80ms ease-out,-webkit-box-shadow 80ms ease-out;
-  transition: border 80ms ease-out,-webkit-box-shadow 80ms ease-out;
-  transition: border 80ms ease-out,box-shadow 80ms ease-out;
-  transition: border 80ms ease-out,box-shadow 80ms ease-out,-webkit-box-shadow 80ms ease-out;
+  -webkit-transition: border 80ms ease-out, -webkit-box-shadow 80ms ease-out;
+  transition: border 80ms ease-out, -webkit-box-shadow 80ms ease-out;
+  transition: border 80ms ease-out, box-shadow 80ms ease-out;
+  transition: border 80ms ease-out, box-shadow 80ms ease-out, -webkit-box-shadow 80ms ease-out;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   margin: 0 0 20px;
@@ -217,7 +218,8 @@
   cursor: pointer;
 }
 
-.reg-terms a, .reg-terms a:active {
+.reg-terms a,
+.reg-terms a:active {
   color: #696969;
   text-decoration: none;
 }
@@ -245,18 +247,48 @@
   cursor: pointer;
 }
 
-.auth-footer .change-region, .auth-footer a, .auth-footer a:active {
+.auth-footer .change-region,
+.auth-footer a,
+.auth-footer a:active {
   color: #696969;
   text-decoration: none;
 }
 
-.auth-footer .change-region:hover, .auth-footer a:hover {
+.auth-footer .change-region:hover,
+.auth-footer a:hover {
   color: #4285f4;
   text-decoration: underline;
 }
 
 .auth-footer div {
   padding: 0 20px;
+}
+
+.register-link {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.register-link a {
+  text-decoration: none;
+  color: #1d1c1d;
+}
+
+.register-link a:visited {
+  text-decoration: none;
+}
+
+.register-link a:hover {
+  color: #3f0e40;
+  text-decoration: underline;
+}
+
+.success-message {
+  color: #007a5a;
 }
 
 .modal-backdrop {
@@ -276,7 +308,6 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
@@ -284,7 +315,7 @@
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-
+  overflow-y: scroll;
   background-color: #ffffff;
   border-radius: 12px;
   z-index: 10;
@@ -380,10 +411,11 @@
 .modal-addmembers-buttons {
   margin-bottom: 16px;
 }
+
 .modal-addmembers-buttons button {
   background-color: #ffffff;
   outline: none;
-  border: 0.5px solid #b1b1b1;
+  border: 0.5px solid  #b1b1b1;
   border-radius: 4px;
   padding: 4px 8px;
   margin-right: 8px;
@@ -391,15 +423,19 @@
   font-weight: bold;
   cursor: pointer;
 }
+
 .modal-addmembers-buttons button span {
   margin-right: 6px;
 }
+
 .modal-addmembers-buttons button.call {
   background-color: #e4e4e4;
 }
+
 .modal-addmembers-buttons button:hover {
   background-color: #f2f1f1b6;
 }
+
 .modal-addmembers-buttons button.call:hover {
   background-color: #e4e4e4;
 }
@@ -409,9 +445,13 @@
   font-weight: bold;
   margin-bottom: 8px;
 }
+
 .modal-addmembers-sections ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
 }
+
 .modal-addmembers-sections li {
   list-style-type: none;
   margin-right: 24px;
@@ -419,7 +459,7 @@
 }
 
 .hr-addmembers {
-  border: 0.5px solid #e1e1e1;
+  border: 0.5px solid  #e1e1e1;
   margin-bottom: 12px;
 }
 
@@ -427,10 +467,15 @@
   border: 1px solid #b1b1b1;
   border-radius: 4px;
   background-color: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   padding: 4px 0;
 }
+
 .findmembers-search-input .search-icon {
   margin-left: 16px;
   font-size: 12px;
@@ -446,10 +491,15 @@
 
 .addmembers-btn {
   margin: 24px 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   cursor: pointer;
 }
+
 .addmembers-btn .addmembers-btn-icon {
   padding: 8px;
   margin-right: 12px;
@@ -461,6 +511,7 @@
   font-size: 16px;
   cursor: pointer;
 }
+
 .addmembers-btn .addmembers-btn-text {
   font-size: 12px;
   font-weight: bold;

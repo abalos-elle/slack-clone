@@ -1,26 +1,36 @@
 @import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap");
 .header-help-btn {
+  position: relative;
   border: none;
   outline: none;
   background-color: transparent;
   font-size: 20px;
-  color: var(--font-color-white-default);
+  color: white;
 }
 
 .searchbar-container {
   width: 100%;
   height: 100%;
   background-color: #350d36;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  overflow: hidden;
 }
 
 .header-search {
-  width: 40vw;
-  height: 2.5rem;
+  position: relative;
+  width: 48vw;
+  height: 70%;
   font-size: 18px;
-  transform: translateY(1px);
+  -webkit-transform: translateY(1px);
+          transform: translateY(1px);
   background-color: transparent;
 }
 
@@ -29,22 +39,29 @@
   padding-right: 0.5rem;
   width: 100%;
   height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  box-shadow: inset 0 0 0 1px #684a68;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   border-radius: 7px;
   background-color: #5d3d5e;
+  border-style: none;
   color: #ffffff;
   font-weight: 300;
   font-family: inherit;
-  font-size: 1.3rem;
+  font-size: 1rem;
   z-index: -1;
   cursor: pointer;
 }
+
 .header-search-btn > .icon {
   margin-right: 1rem;
-  font-size: 1.4rem;
+  font-size: 1rem;
 }
 
 .header-history {
@@ -52,20 +69,30 @@
 }
 
 .header-help {
+  position: relative;
   margin-left: 1rem;
 }
 
 .header-side-icons {
-  font-size: 2.3rem;
+  font-size: 1.5rem;
   color: #ffffff;
   opacity: 0.8;
 }
 
 .header-flex-center {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .header-user-img {
@@ -75,7 +102,9 @@
   width: 2.6rem;
   overflow: hidden;
 }
+
 .header-user-img > img {
   height: 90%;
   border-radius: 4px;
-}/*# sourceMappingURL=Header.css.map */
+}
+/*# sourceMappingURL=Header.css.map */
