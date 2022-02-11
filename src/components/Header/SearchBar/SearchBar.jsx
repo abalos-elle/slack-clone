@@ -2,42 +2,32 @@ import { useState, useEffect } from "react";
 import { NavLink, useParams } from "react-router-dom";
 import { FiSearch } from "react-icons/fi";
 import { GrFormClose } from "react-icons/gr";
-import { getAllUsers } from "../../../api/api-users";
+import { getAllUsers, channelsGet } from "../../../api/api-users";
 import avatar from "../../../avatar-placeholder.png";
 import "./SearchBar.scss";
 import { CgLock } from "react-icons/cg";
-import { channelsGet } from "../../../api/api-channels";
+// import { channelsGet } from "../../../api/api-channels";
 
-const SearchBarTemp = ({ handleOpenSearchBar }) => {
-
+const SearchBar = ({ handleOpenSearchBar }) => {
   const [itemsList, setItemsList] = useState([]);
   const [searchInput, setSearchInput] = useState("");
-  const loginData = JSON.parse(sessionStorage.getItem("userLoggedInDetails"));
+  // const loginData = JSON.parse(sessionStorage.getItem("userLoggedInDetails"));
 
   const params = useParams();
 
   useEffect(() => {
-    const headers = {
-      token: loginData["access-token"],
-      client: loginData.client,
-      expiry: loginData.expiry,
-      uid: loginData.uid,
-    };
-
     (async () => {
       const response = await getAllUsers();
 
-
-      const response2 = await channelsGet(headers);
+      const response2 = await channelsGet();
+      console.log(response2);
 
       setItemsList(response["data"]["data"].concat(response2["data"]["data"]));
-
     })();
-
   }, []);
 
   const searchResults = () => {
-
+    console.log(itemsList);
 
     const filteredResults = itemsList.filter((item) => {
       if (searchInput == "") {
@@ -61,7 +51,11 @@ const SearchBarTemp = ({ handleOpenSearchBar }) => {
                 to={`/${params.uid}/messages/${result.id}`}
                 key={result.id}
               >
-                <div className="searchBar_results_items" onClick={handleOpenSearchBar}>
+                <div
+                  title="searchBar_results_items"
+                  className="searchBar_results_items"
+                  onClick={handleOpenSearchBar}
+                >
                   <img src={avatar} />
                   <h3>{result.email}</h3>
                 </div>
@@ -73,14 +67,17 @@ const SearchBarTemp = ({ handleOpenSearchBar }) => {
                 to={`/${params.uid}/channels/${result.id}`}
                 key={result.id}
               >
-                <div className="searchBar_results_items" onClick={handleOpenSearchBar}>
-                  <CgLock color="black"/>
+                <div
+                  title="searchBar_results_items"
+                  className="searchBar_results_items"
+                  onClick={handleOpenSearchBar}
+                >
+                  <CgLock color="black" />
                   <h3>{result.name}</h3>
                 </div>
               </NavLink>
             );
           }
-
         })}
       </div>
     );
@@ -92,6 +89,7 @@ const SearchBarTemp = ({ handleOpenSearchBar }) => {
         <div className="searchBar_input">
           <FiSearch className="searchBar-icon" />
           <input
+            title="searchBar_input"
             type="text"
             autoFocus
             placeholder="Input Search. Beep boop."
@@ -107,4 +105,4 @@ const SearchBarTemp = ({ handleOpenSearchBar }) => {
   );
 };
 
-export default SearchBarTemp;
+export default SearchBar;

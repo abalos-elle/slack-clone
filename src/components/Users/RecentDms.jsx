@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { getInteractedUsers } from '../../api/api-users'
+import { getInteractedUsers, getRecentDms } from '../../api/api-users'
 import avatar from '../../avatar-placeholder.png'
 import { NavLink, useNavigate, useParams } from 'react-router-dom'
 
@@ -9,21 +9,21 @@ const RecentDms = () => {
   const loginData = JSON.parse(sessionStorage.getItem('userLoggedInDetails'))
 
   useEffect(() => {
-    const headers = {
-      token: loginData['access-token'],
-      client: loginData.client,
-      expiry: loginData.expiry,
-      uid: loginData.uid,
-    }
+    // const headers = {
+    //   token: loginData['access-token'],
+    //   client: loginData.client,
+    //   expiry: loginData.expiry,
+    //   uid: loginData.uid,
+    // }
 
-    getInteractedUsers(headers)
+    getRecentDms()
       .then((data) => setRecentDms(data.data.data))
       .catch((err) => console.log('Fetch Interacted Users Error: ', err))
 
     // console.log(loginData)
   }, [])
 
-  // console.log(recentDms)
+  console.log(recentDms)
 
   const userIds = recentDms.map((user) => user.id)
   // console.log(userIds)
