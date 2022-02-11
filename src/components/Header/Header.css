@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap');
 .header-help-btn {
   position: relative;
   border: none;
@@ -12,6 +12,8 @@
   width: 100%;
   height: 100%;
   background-color: #350d36;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -23,6 +25,7 @@
   width: 48vw;
   height: 70%;
   font-size: 18px;
+  -webkit-transform: translateY(1px);
   transform: translateY(1px);
   background-color: transparent;
 }
@@ -32,6 +35,8 @@
   padding-right: 0.5rem;
   width: 100%;
   height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -45,6 +50,7 @@
   z-index: -1;
   cursor: pointer;
 }
+
 .header-search-btn > .icon {
   margin-right: 1rem;
   font-size: 1rem;
@@ -66,9 +72,18 @@
 }
 
 .header-flex-center {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
   justify-content: center;
 }
 
@@ -79,7 +94,9 @@
   width: 2.6rem;
   overflow: hidden;
 }
+
 .header-user-img > img {
   height: 90%;
   border-radius: 4px;
-}/*# sourceMappingURL=Header.css.map */
+}
+/*# sourceMappingURL=Header.css.map */

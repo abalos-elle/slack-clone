@@ -57,3 +57,43 @@ export const mockLoginResponse = {
     },
   },
 }
+
+export const mockRegisterParams = {
+  email: 'testAPI@example.com',
+  password: '12345678',
+  password_confirmation: '12345678',
+}
+
+export const mockRegisterRejectParams = {
+  email: 'wrongemail',
+  password: 'correctpassword',
+  password_confirmation: 'wrongpassword',
+}
+
+export const mockRegisterResponse = {
+  response: {
+    data: {
+      status: 'error',
+      data: {
+        id: null,
+        provider: 'email',
+        uid: '',
+        allow_password_change: false,
+        name: null,
+        nickname: null,
+        image: null,
+        email: 'wrongemail',
+        created_at: null,
+        updated_at: null,
+      },
+      errors: {
+        password_confirmation: ["doesn't match Password"],
+        email: ['is not an email'],
+        full_messages: [
+          "Password confirmation doesn't match Password",
+          'Email is not an email',
+        ],
+      },
+    },
+  },
+}
