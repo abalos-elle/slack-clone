@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { FaSearch } from 'react-icons/fa';
 import avatar from '../../avatar-placeholder.png'
 
-export function FindMembers ({ list, addMember }) {
+export function FindMembers ({ list, addMember, disable }) {
   const [searchInput, setSearchInput] = useState()  
 
   return (
@@ -19,6 +19,7 @@ export function FindMembers ({ list, addMember }) {
               onChange={(e) => {
                   setSearchInput(e.target.value)
               }}
+              disabled={disable}
             />
           </div>
       {/* added a div wrapper */}

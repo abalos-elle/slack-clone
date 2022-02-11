@@ -186,3 +186,17 @@
         font-weight: bold;
     }
 }
+
+.addmembers-currmembers-list {
+    .currmembers-container {
+        display: flex;
+        align-items: center;
+        margin-bottom: 8px;
+    }
+    
+    .email {
+        margin-left: 12px;
+        font-size: 14px;
+        font-weight: bold;
+    }
+}
