@@ -72,7 +72,8 @@ const Sidebar = ({
             )}
             <span>Channels</span>
             <div className="sidebar-add-icon">
-              <FiPlus onClick={handleOpenNewChannel} />
+              <FiPlus onClick={handleOpenNewChannel} 
+              title='channel-add-btn'/>
             </div>
           </div>
           {showChannelList ? (

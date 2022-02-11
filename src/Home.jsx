@@ -2,7 +2,6 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import { Outlet } from 'react-router-dom'
 import { channelCreate, channelsGet } from './api/api-channels'
-import { getUserObject } from './components/Users/getUserObject'
 import Modals from './components/Modals'
 import NewChannel from './forms/Channels/NewChannel'
 import Sidebar from './components/Sidebar/Sidebar'
@@ -140,6 +139,7 @@ const Home = () => {
       {/* Modal for adding a new channel  */}
       {isNewChannelModalOpen && (
         <Modals
+          title='AddChannelModal'
           modalTitle={`Create a channel`}
           modalSubtitle={`Channels are where your team communicates. They're best when organized around a topic -- #marketing, for example.`}
           handleClose={handleCloseNewChannel}

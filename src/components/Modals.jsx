@@ -2,10 +2,10 @@ import React from 'react';
 import { FiX } from "react-icons/fi";
 import Buttons from './Buttons';
 
-function Modals({children, modalTitle, handleClose, handleCloseBackdrop, modalSubtitle, btnClass, btnTitle, btnText}) {
+function Modals({children, title, modalTitle, handleClose, handleCloseBackdrop, modalSubtitle, btnClass, btnTitle, btnText}) {
   return (
       <div className='modal-backdrop' onClick={handleCloseBackdrop}>
-        <div className='modal-container'>
+        <div className='modal-container' title={title}>
             <div className='modal-header'>
                 <div className='modal-header-title'>
                     <span className='modal-title'>{modalTitle}</span>

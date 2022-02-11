@@ -97,3 +97,58 @@ export const mockRegisterResponse = {
     },
   },
 }
+
+export const mockChannelErrors = null
+
+export const mockChannelCreateResponse = {
+  data: {
+      data: {
+          id: 2174,
+          owner_id: 1645,
+          name: "batch15-group3",
+          created_at: "2022-02-03T14:39:04.774Z",
+          updated_at: "2022-02-03T14:39:04.774Z"
+      }
+  }
+}
+
+export const mockChannelDetailsResponse = [
+  {
+      "id": 2174,
+      "owner_id": 1645,
+      "name": "batch15-group3",
+      "created_at": "2022-02-03T14:39:04.774Z",
+      "updated_at": "2022-02-03T14:39:04.774Z"
+  },
+  {
+      "id": 2281,
+      "owner_id": 1640,
+      "name": "select-channel",
+      "created_at": "2022-02-11T17:04:53.676Z",
+      "updated_at": "2022-02-11T17:04:53.676Z"
+  },
+  {
+      "id": 2282,
+      "owner_id": 1640,
+      "name": "12-mto",
+      "created_at": "2022-02-11T17:05:08.713Z",
+      "updated_at": "2022-02-11T17:05:08.713Z"
+  }
+]
+
+export const mockAddMemberResponse = [
+    {
+        "id": 6120,
+        "channel_id": 2282,
+        "user_id": 1640,
+        "created_at": "2022-02-11T17:05:08.719Z",
+        "updated_at": "2022-02-11T17:05:08.719Z"
+    },
+    {
+        "id": 6121,
+        "channel_id": 2282,
+        "user_id": 1645,
+        "created_at": "2022-02-11T21:33:17.386Z",
+        "updated_at": "2022-02-11T21:33:17.386Z"
+    }
+]
