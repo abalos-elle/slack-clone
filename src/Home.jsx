@@ -2,6 +2,7 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import { Outlet } from 'react-router-dom'
 import { channelCreate, channelsGet } from './api/api-channels'
+import { getUserObject } from './components/Users/getUserObject'
 import Modals from './components/Modals'
 import NewChannel from './forms/Channels/NewChannel'
 import Sidebar from './components/Sidebar/Sidebar'
@@ -57,7 +58,7 @@ const Home = () => {
         console.log(response)
         if (response.data.errors != null) {
           console.log(response.config.data)
-          setHandleRender(!handleRender)
+          // setHandleRender(!handleRender)
           return response
         }
       })
