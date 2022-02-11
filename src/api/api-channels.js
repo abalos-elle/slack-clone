@@ -89,24 +89,28 @@ export const channelDetailsGet = async ({channelId, headers: {token, client, exp
 }
 
 // Connect to API to add members to a channel
-export const channelAddMember = async ({channelId, member_id, headers:{token, client, expiry, uid}}) => {
+export const channelAddMember = async ({id, member_id}) => {
+    let headers = JSON.parse(sessionStorage.getItem('userLoggedInDetails'))
+
     try {
-        const response = await axiosFetch.get(
-            `api/v1/channel/add_member`,
+        const response = await axiosFetch.post(
+            `/api/v1/channel/add_member`,
             {
-                channelId,
+                id,
                 member_id
             },
             {
                 headers: {
-                    "access-token": token,
-                    client,
-                    expiry,
-                    uid
+                    "access-token": headers['access-token'],
+                    client: headers.client,
+                    expiry: headers.expiry,
+                    uid: headers.uid
                 }
             })
-        return response;
+            console.log(response);
+            return response;
     } catch (error) {
+        console.log(error)
         return error;
     }
 }
