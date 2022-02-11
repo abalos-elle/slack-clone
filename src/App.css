@@ -695,6 +695,15 @@ button.btn-channel-addUsers:hover span.addmembers:hover {
   color: #b1b1b1;
 }
 
+.filtered-container {
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+}
+.filtered-container img {
+  margin-right: 8px;
+}
+
 .main-container {
   width: 100vw;
   height: 100vh;
