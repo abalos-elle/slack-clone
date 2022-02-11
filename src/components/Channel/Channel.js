@@ -9,7 +9,6 @@ import ChannelHeader from './ChannelHeader'
 import Messages from '../Messages/Messages'
 import Modals from '../Modals'
 import Buttons from '../Buttons'
-import avatar from '../../avatar-placeholder.png'
 import { BsStar, BsBell, BsChevronDown, BsTelephone, BsFillPersonPlusFill } from "react-icons/bs";
 
 function Channel({ }) {
@@ -196,7 +195,7 @@ function Channel({ }) {
             {currentMembers && currentMembers.map(member => {
               return (
                 <div className='currmembers-container' key={member.id}>
-                  <img src={avatar} height='32px' width='32px'/>
+                  <img src='https://tinyurl.com/2p8fmaz3' height='32px' width='32px'/>
                   <span className='email'> {member.email} </span>
                 </div>
               )
@@ -215,7 +214,7 @@ function Channel({ }) {
           <div className='usersToBeAdded'>
             {addedUsers && addedUsers.map(user => {
               <div className='filteredUserItems' key={user.id}>
-                <img src={avatar} height='20px' width='20px'/>
+                <img src='https://tinyurl.com/2p8fmaz3' height='20px' width='20px'/>
                 <span>{user.email} </span>
               </div>
             })}
