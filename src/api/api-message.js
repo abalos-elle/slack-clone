@@ -21,7 +21,7 @@ export const sendMessage = async ({ receiver_id, receiver_class, body }) => {
       receiver_class,
       body,
     })
-    console.log(response)
+    // console.log(response)
     return response
   } catch (error) {
     return error

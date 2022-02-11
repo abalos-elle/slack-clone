@@ -1,13 +1,14 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
-import { channelsGet, channelDetailsGet } from '../../api/api-channels'
+import { channelsGet, channelDetailsGet, channelAddMember } from '../../api/api-channels'
 import { getAllUsers } from '../../api/api-users'
+import { FindMembers } from '../../forms/Channels/ChannelSearchBars'
 import ChannelHeader from './ChannelHeader'
 import Messages from '../Messages/Messages'
 import Modals from '../Modals'
 import Buttons from '../Buttons'
-import { FindMembers } from '../../forms/Channels/ChannelSearchBars'
+import avatar from '../../avatar-placeholder.png'
 import { BsStar, BsBell, BsChevronDown, BsTelephone, BsFillPersonPlusFill } from "react-icons/bs";
 
 function Channel({ }) {
@@ -20,6 +21,7 @@ function Channel({ }) {
   const [allUsers, setAllUsers] = useState([])
   const [currentMembers, setCurrentMembers] = useState([])
   const [memberIds, setMemberIds] = useState([])
+  const [addedUsers, setAddedUsers] = useState([])
   
   // create function to identify channel name
   const getChannelName = (arr, id) => {
@@ -32,6 +34,14 @@ function Channel({ }) {
   const dispCurrMembers = () => {
     let ids = currentMembers.map(member => member.user_id)
     setMemberIds(ids);
+  }
+  
+  // create function to add members 
+  const addMember = e => {
+    let id = parseInt(channelId)
+    let member_id = parseInt(e.target.id)
+    console.log(id, member_id);
+    channelAddMember(id, member_id);
   }
   
   // Open modal to add members and get current channel details
@@ -93,6 +103,7 @@ function Channel({ }) {
       .then(result => {
         let members = result.data.data.channel_members
         setCurrentMembers(members);
+        console.log(members);
       })
       .catch((err) => console.log(err))
 
@@ -141,12 +152,13 @@ function Channel({ }) {
               <li>Settings</li>
             </ul>
           </div>
+          <hr className='hr-addmembers'/>
           <FindMembers list={currentMembers}/>
           <div className='addmembers-btn' onClick={handleOpen}>
             <Buttons className='addmembers-btn-icon' title='addmembers-btn-icon'>
               <BsFillPersonPlusFill />
             </Buttons>
-            <div>Add People</div>
+            <div className='addmembers-btn-text'>Add People</div>
           </div>
         </Modals>
       )}
@@ -157,7 +169,15 @@ function Channel({ }) {
         modalTitle='Add people' 
         modalSubtitle={`#${channelName}`} 
         handleClose={handleClose}>
-
+          <FindMembers list={allUsers} addMember={addMember} />
+          <div className='usersToBeAdded'>
+            {addedUsers && addedUsers.map(user => {
+              <div className='filteredUserItems' key={user.id}>
+                <img src={avatar} height='20px' width='20px'/>
+                <h3> {user.email} </h3>
+              </div>
+            })}
+          </div>
         </Modals>
       )}
     </div>
