@@ -19,7 +19,7 @@ function Modals({children, modalTitle, handleClose, handleCloseBackdrop, modalSu
                 {children}
             </div>
             <div className='modal-footer'>
-                <Buttons className={btnClass} title={btnTitle} text={btnText}/>
+                {/* <Buttons className={btnClass} title={btnTitle} text={btnText}/> */}
             </div>
         </div>
       </div>

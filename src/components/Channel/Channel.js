@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { channelsGet, channelDetailsGet, channelAddMember } from '../../api/api-channels'
 import { getAllUsers } from '../../api/api-users'
+import { getUserObject } from '../Users/getUserObject'
 import { FindMembers } from '../../forms/Channels/ChannelSearchBars'
 import ChannelHeader from './ChannelHeader'
 import Messages from '../Messages/Messages'
@@ -21,6 +22,7 @@ function Channel({ }) {
   const [allUsers, setAllUsers] = useState([])
   const [currentMembers, setCurrentMembers] = useState([])
   const [memberIds, setMemberIds] = useState([])
+  const [users, setUsers] = useState([])
   const [addedUsers, setAddedUsers] = useState([])
   
   // create function to identify channel name
@@ -30,24 +32,49 @@ function Channel({ }) {
     setChannelName(channelname);
   }
 
-  // create function to display current members upon add member modal open
-  const dispCurrMembers = () => {
-    let ids = currentMembers.map(member => member.user_id)
+  // create function to get current member ids
+  const getCurrMemberIds = arr => {
+    let ids = arr.map(member => member.user_id)
     setMemberIds(ids);
+    return ids
   }
   
   // create function to add members 
   const addMember = e => {
     let id = parseInt(channelId)
     let member_id = parseInt(e.target.id)
-    console.log(id, member_id);
-    channelAddMember(id, member_id);
+    channelAddMember({id, member_id});
+    setAddModalOpen(false);
+  }
+
+  // create function to display current members upon modal open
+  let members
+  let currList = []
+
+  const dispMembers = () => {
+    members = memberIds;
+    members.map(member => {
+      let memberObj = getUserObject(member)
+      memberObj.then(obj => {
+        currList.push(obj);
+        return currList
+      })
+      .then(currList => {
+        if(currList.length === memberIds.length) {
+          setCurrentMembers(currList);
+          console.log(currList);
+          console.log(currentMembers);
+          return;
+        }
+      })
+      .catch(err => console.log(err))
+    })
   }
   
   // Open modal to add members and get current channel details
   const handleOpenAddMembers = () => {
     setAddMembersModalOpen(true);
-    dispCurrMembers();
+    dispMembers();
   }
 
   // Close modal to add members
@@ -103,8 +130,9 @@ function Channel({ }) {
       .then(result => {
         let members = result.data.data.channel_members
         setCurrentMembers(members);
-        console.log(members);
+        return members
       })
+      .then(members => getCurrMemberIds(members))
       .catch((err) => console.log(err))
 
     // get list of all users
@@ -114,14 +142,15 @@ function Channel({ }) {
       setAllUsers(users);
       })
     .catch((error) => error)
-  }, [channelId])
+  }, [channelId, members])
 
   return (
     <div>
       <Messages
         displayHeader={
           <ChannelHeader handleOpen={handleOpenAddMembers} 
-          channelName={channelName}/>
+          channelName={channelName}
+          membersNum={memberIds.length}/>
         }
         receiverClass="Channel"
         receiverID={channelId}
@@ -129,7 +158,7 @@ function Channel({ }) {
 
        {/* Modal for channel details and add members */}
        {isAddMembersModalOpen && (
-        <Modals modalTitle={`#${channelName}`} handleClose={handleCloseAddMembers}>
+        <Modals modalTitle={`#${channelName}`} handleClose={handleCloseAddMembers} btnText='Done'>
           <div className='modal-addmembers-buttons'>
             <Buttons className='favorite' title='favorite'>
               <BsStar />
@@ -160,6 +189,16 @@ function Channel({ }) {
             </Buttons>
             <div className='addmembers-btn-text'>Add People</div>
           </div>
+          <div className='addmembers-currmembers-list'>
+            {currentMembers && currentMembers.map(member => {
+              return (
+                <div className='currmembers-container' key={member.id}>
+                  <img src={avatar} height='32px' width='32px'/>
+                  <span className='email'> {member.email} </span>
+                </div>
+              )
+            })}
+          </div>
         </Modals>
       )}
 
@@ -174,7 +213,7 @@ function Channel({ }) {
             {addedUsers && addedUsers.map(user => {
               <div className='filteredUserItems' key={user.id}>
                 <img src={avatar} height='20px' width='20px'/>
-                <h3> {user.email} </h3>
+                <span>{user.email} </span>
               </div>
             })}
           </div>

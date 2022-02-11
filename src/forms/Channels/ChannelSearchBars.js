@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { FaSearch } from 'react-icons/fa';
 import avatar from '../../avatar-placeholder.png'
 
-export function FindMembers ({ list, addMember }) {
+export function FindMembers ({ list, addMember, disable }) {
   const [searchInput, setSearchInput] = useState()  
 
   return (
@@ -19,6 +19,7 @@ export function FindMembers ({ list, addMember }) {
               onChange={(e) => {
                   setSearchInput(e.target.value)
               }}
+              disabled={disable}
             />
           </div>
       {/* added a div wrapper */}
@@ -36,9 +37,9 @@ export function FindMembers ({ list, addMember }) {
             })
             .map(user => {
               return (
-                <div className='filteredUserItems' key={user.id} id={user.id}>
-                  <img src={avatar} height='20px' width='20px'onClick={addMember} id={user.id}/>
-                  <h3 onClick={addMember} id={user.id}> {user.email} </h3>
+                <div className='filtered-container' key={user.id} id={user.id}>
+                  <img src={avatar} height='24px' width='24px' onClick={addMember} id={user.id}/>
+                  <span className='email' onClick={addMember} id={user.id}> {user.email} </span>
                 </div>
               )
             })}

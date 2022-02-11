@@ -63,3 +63,19 @@ button.btn-channel-addUsers:hover {
         font-weight: 700;
     }
 }
+
+.icon-membersNum {
+    font-size: 14px;
+    font-weight: bold;
+    color: #b1b1b1;
+}
+
+.filtered-container {
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+
+    img {
+        margin-right: 8px;
+    }
+}
