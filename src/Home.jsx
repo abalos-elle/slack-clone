@@ -65,8 +65,8 @@ const Home = () => {
         console.log(error)
         return error
       })
-    reset();
-    window.location.reload();
+    reset()
+    window.location.reload()
   }
 
   // Event handlers
@@ -112,12 +112,12 @@ const Home = () => {
     channelsGet(headers)
       .then((response) => {
         let channelObj = response.data.data
-        setChannels(channelObj);
+        setChannels(channelObj)
         return channelObj
       })
-      .then(channelObj => {
-        let channelIdsArray = channelObj.map(array => array.id);
-        setChannelIds(channelIdsArray);
+      .then((channelObj) => {
+        let channelIdsArray = channelObj.map((array) => array.id)
+        setChannelIds(channelIdsArray)
       })
       .catch((err) => console.log(err))
   }, [handleRender])
@@ -125,9 +125,7 @@ const Home = () => {
   return (
     <main className="main-container">
       {isSearchBarOpen ? (
-        <SearchBar
-          handleOpenSearchBar={handleOpenSearchBar}
-        />
+        <SearchBar handleOpenSearchBar={handleOpenSearchBar} />
       ) : null}
 
       <Header handleOpenSearchBar={handleOpenSearchBar} />
@@ -138,7 +136,6 @@ const Home = () => {
       />
       <Outlet />
 
-      
       {/* Modal for adding a new channel  */}
       {isNewChannelModalOpen && (
         <Modals

@@ -34,8 +34,8 @@ function Login({ authenticate, handleUserData, handleUserHeaders }) {
     // Invoke API for user login
     userLogin(userDetails)
       .then((response) => {
-        handleUserData(response.data)
-        handleUserHeaders(response.headers)
+        // handleUserData(response.data)
+        // handleUserHeaders(response.headers)
         if (response.status === 200) {
           sessionStorage.setItem(
             'userLoggedInDetails',
@@ -129,7 +129,11 @@ function Login({ authenticate, handleUserData, handleUserHeaders }) {
             ></input>
           </div>
           <div>
-            <button className="auth-button" onClick={handleClickSubmit}>
+            <button
+              className="auth-button"
+              onClick={handleClickSubmit}
+              title="signin-button"
+            >
               Sign In
             </button>
           </div>

@@ -36,9 +36,6 @@ const Sidebar = ({
       })
     : null
 
-  const handleDMClick = () => {
-    navigate(`/${uid}/new-message`)
-  }
   const staticList = [
     { title: 'Threads', icon: <BsChatText /> },
     { title: 'All DMs', icon: <IoChatbubblesOutline /> },
@@ -95,7 +92,7 @@ const Sidebar = ({
             )}
             <span>Direct Messages</span>
             <div className="sidebar-add-icon">
-              <FiPlus onClick={handleDMClick} />
+              <FiPlus onClick={() => navigate(`/${uid}/new-message`)} />
             </div>
           </div>
           {showRecentDmList ? <RecentDms loginData={headers} /> : null}

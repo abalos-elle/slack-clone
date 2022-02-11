@@ -12,7 +12,7 @@ const Message = ({ sender, time, body }) => {
           <p className="message-details-sender">{sender}</p>
           <p className="message-details-time">{time}</p>
         </div>
-        <p className="message-details-body">{body}</p>
+        <pre className="message-details-body">{body}</pre>
       </div>
     </div>
   )
