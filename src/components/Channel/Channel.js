@@ -149,7 +149,8 @@ function Channel({ }) {
       <Messages
         displayHeader={
           <ChannelHeader handleOpen={handleOpenAddMembers} 
-          channelName={channelName}/>
+          channelName={channelName}
+          membersNum={memberIds.length}/>
         }
         receiverClass="Channel"
         receiverID={channelId}

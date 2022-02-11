@@ -689,6 +689,12 @@ button.btn-channel-addUsers:hover span.addmembers:hover {
   font-weight: 700;
 }
 
+.icon-membersNum {
+  font-size: 14px;
+  font-weight: bold;
+  color: #b1b1b1;
+}
+
 .main-container {
   width: 100vw;
   height: 100vh;
