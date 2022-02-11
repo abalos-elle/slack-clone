@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter } from 'react-router-dom'
 import { render, screen, waitFor, act, fireEvent } from '@testing-library/react'
 import { userLogin, userRegistration } from '../api/api-auth'
 import {
@@ -12,7 +12,6 @@ import {
   mockRegisterResponse,
 } from '../api/mockData'
 import Login from '../forms/Login/Login'
-import Home from '../Home'
 import Register from '../forms/Register/Register'
 
 // mock api calls
@@ -129,5 +128,36 @@ describe('Test for registering user', () => {
     expect(userRegistration).toHaveBeenCalledTimes(1)
     expect(errorMessagePassword).toBeInTheDocument()
     expect(errorMessageEmail).toBeInTheDocument()
+  })
+
+  test('Reject POST request to return error', async () => {
+    // arrange
+    userRegistration.mockImplementation((mockRegisterRejectParams) => {
+      return Promise.reject(mockRegisterResponse)
+    })
+
+    // act
+    await act(async () => {
+      render(
+        <BrowserRouter>
+          <Register />
+        </BrowserRouter>
+      )
+    })
+    const registerButton = await waitFor(() =>
+      screen.getByText('Create an Account')
+    )
+    await act(async () => {
+      fireEvent.click(registerButton)
+    })
+    const errorMessageReject = await waitFor(() =>
+      screen.getByText(
+        `Review the information you have submitted and try again.`
+      )
+    )
+
+    // assert
+    expect(userRegistration).toHaveBeenCalledTimes(1)
+    expect(errorMessageReject).toBeInTheDocument()
   })
 })
