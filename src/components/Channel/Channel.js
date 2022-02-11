@@ -24,6 +24,7 @@ function Channel({ }) {
   const [memberIds, setMemberIds] = useState([])
   const [users, setUsers] = useState([])
   const [addedUsers, setAddedUsers] = useState([])
+
   
   // create function to identify channel name
   const getChannelName = (arr, id) => {
@@ -45,6 +46,8 @@ function Channel({ }) {
     let member_id = parseInt(e.target.id)
     channelAddMember({id, member_id});
     setAddModalOpen(false);
+    setAddMembersModalOpen(false);
+    window.location.reload();
   }
 
   // create function to display current members upon modal open
