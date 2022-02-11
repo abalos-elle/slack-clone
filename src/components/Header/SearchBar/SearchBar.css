@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap");
 .modal-backdrop {
   width: 100%;
   height: 100%;
@@ -257,7 +257,7 @@
   resize: none;
   padding: 5px 5px;
   font-size: 1rem;
-  font-family: 'Lato', sans-serif;
+  font-family: "Lato", sans-serif;
   vertical-align: text-top;
   height: 100%;
   border: none;
@@ -330,7 +330,7 @@
 }
 
 .message-details-body {
-  font-family: 'Lato', sans-serif;
+  font-family: "Lato", sans-serif;
   color: #1d1c1d;
   padding: 5px 10px;
 }
@@ -346,7 +346,7 @@
   color: #1d1c1d;
   font-size: 1.2rem;
   font-weight: 900;
-  font-family: 'Lato', sans-serif;
+  font-family: "Lato", sans-serif;
   border-bottom: 1px solid #1d1c1d50;
 }
 .messages-container-header img {
@@ -363,7 +363,7 @@
   background-color: transparent;
   font-size: 1.2rem;
   font-weight: 700;
-  font-family: 'Lato', sans-serif;
+  font-family: "Lato", sans-serif;
 }
 
 .messages-search-user {
@@ -383,7 +383,7 @@
 .messages-searchbar {
   display: flex;
   align-items: center;
-  font-family: 'Lato', sans-serif !important;
+  font-family: "Lato", sans-serif !important;
   font-size: 1rem !important;
   padding: 0;
   display: block !important;
@@ -460,8 +460,7 @@
   cursor: pointer;
   z-index: 1;
 }
-.btn-rectangle-medium span.lock,
-.btn-rectangle-medium span.icon-addmembers {
+.btn-rectangle-medium span.lock, .btn-rectangle-medium span.icon-addmembers {
   padding-right: 4px;
   font-size: 16px;
 }
@@ -516,7 +515,7 @@ button.btn-channel-addUsers:hover span.addmembers:hover {
   grid-template-rows: 40px 1fr;
   grid-template-columns: 260px 1fr;
   color: #1d1c1d;
-  font-family: 'Lato', sans-serif;
+  font-family: "Lato", sans-serif;
 }
 
 .searchbar-container {
@@ -550,7 +549,7 @@ button.btn-channel-addUsers:hover span.addmembers:hover {
   color: #ffffff;
   font-size: 1.2rem;
   font-weight: 900;
-  font-family: 'Lato', sans-serif;
+  font-family: "Lato", sans-serif;
   background-color: transparent;
   border: none;
 }
@@ -701,6 +700,10 @@ button.btn-channel-addUsers:hover span.addmembers:hover {
 .logout-avatar-dropdown hr {
   margin: 8px 0;
 }
+.logout-avatar-dropdown a, .logout-avatar-dropdown a:visited {
+  text-decoration: none;
+  color: #1d1c1d;
+}
 
 .searchBar_container {
   width: 100vw;
@@ -713,10 +716,6 @@ button.btn-channel-addUsers:hover span.addmembers:hover {
   justify-content: center;
   overflow-y: hidden;
 }
-.searchBar_container a {
-  text-decoration: none;
-}
-
 .searchBar_container a {
   text-decoration: none;
 }
@@ -735,7 +734,7 @@ button.btn-channel-addUsers:hover span.addmembers:hover {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  border-bottom: 1px solid #d3d3d3;
+  border-bottom: 1px solid #D3D3D3;
 }
 .searchBar_input > input {
   width: 90%;
@@ -773,7 +772,7 @@ button.btn-channel-addUsers:hover span.addmembers:hover {
   padding: 2rem;
   height: 17vh;
   font-size: 1.3rem;
-  color: #d3d3d3;
+  color: #D3D3D3;
 }
 
 .searchBar-body-buttons {
@@ -844,4 +843,4 @@ button.btn-channel-addUsers:hover span.addmembers:hover {
 
 .footer-items {
   float: right;
-} /*# sourceMappingURL=SearchBar.css.map */
+}/*# sourceMappingURL=SearchBar.css.map */

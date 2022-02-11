@@ -38,7 +38,7 @@ export function FindMembers ({ list, addMember, disable }) {
             .map(user => {
               return (
                 <div className='filtered-container' key={user.id} id={user.id}>
-                  <img src={avatar} height='24px' width='24px' onClick={addMember} id={user.id}/>
+                  <img src='https://tinyurl.com/2p8fmaz3' height='24px' width='24px' onClick={addMember} id={user.id}/>
                   <span className='email' onClick={addMember} id={user.id}> {user.email} </span>
                 </div>
               )

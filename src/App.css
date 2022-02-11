@@ -1,5 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap");
 .auth {
   width: 100vw;
   height: 100vh;
@@ -41,7 +41,6 @@
   flex-direction: column;
   margin: 36px 12px 12px 12px;
 }
-
 .login-btns-container .login-google,
 .login-btns-container .login-apple {
   margin-bottom: 16px;
@@ -92,13 +91,13 @@
   unicode-bidi: -moz-isolate;
   unicode-bidi: isolate;
   -webkit-margin-before: 0.5em;
-  margin-block-start: 0.5em;
+          margin-block-start: 0.5em;
   -webkit-margin-after: 0.5em;
-  margin-block-end: 0.5em;
+          margin-block-end: 0.5em;
   -webkit-margin-start: auto;
-  margin-inline-start: auto;
+          margin-inline-start: auto;
   -webkit-margin-end: auto;
-  margin-inline-end: auto;
+          margin-inline-end: auto;
   overflow: hidden;
   flex-grow: 1;
   margin: 0 24px;
@@ -122,12 +121,7 @@
   line-height: 1.33333333;
   border-radius: 4px;
   border: 1px solid rgba(29, 28, 29, 0.3);
-  -webkit-transition: border 80ms ease-out, -webkit-box-shadow 80ms ease-out;
-  transition: border 80ms ease-out, -webkit-box-shadow 80ms ease-out;
   transition: border 80ms ease-out, box-shadow 80ms ease-out;
-  transition: border 80ms ease-out, box-shadow 80ms ease-out,
-    -webkit-box-shadow 80ms ease-out;
-  -webkit-box-sizing: border-box;
   box-sizing: border-box;
   margin: 0 0 20px;
 }
@@ -169,7 +163,6 @@
   text-decoration: none;
   cursor: pointer;
 }
-
 .reg-terms a,
 .reg-terms a:active {
   color: #696969;
@@ -192,14 +185,12 @@
   text-decoration: none;
   cursor: pointer;
 }
-
 .auth-footer .change-region,
 .auth-footer a,
 .auth-footer a:active {
   color: #696969;
   text-decoration: none;
 }
-
 .auth-footer .change-region:hover,
 .auth-footer a:hover {
   color: #4285f4;
@@ -210,23 +201,16 @@
 }
 
 .register-link {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
   justify-content: center;
 }
-
 .register-link a {
   text-decoration: none;
   color: #1d1c1d;
 }
-
 .register-link a:visited {
   text-decoration: none;
 }
-
 .register-link a:hover {
   color: #3f0e40;
   text-decoration: underline;
@@ -251,12 +235,7 @@
   padding: 12px 24px 24px 24px;
   width: 520px;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: column;
   flex-direction: column;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
   justify-content: center;
   overflow-y: scroll;
   background-color: #ffffff;
@@ -337,7 +316,6 @@
 .modal-addmembers-buttons {
   margin-bottom: 16px;
 }
-
 .modal-addmembers-buttons button {
   background-color: #ffffff;
   outline: none;
@@ -349,19 +327,15 @@
   font-weight: bold;
   cursor: pointer;
 }
-
 .modal-addmembers-buttons button span {
   margin-right: 6px;
 }
-
 .modal-addmembers-buttons button.call {
   background-color: #e4e4e4;
 }
-
 .modal-addmembers-buttons button:hover {
   background-color: #f2f1f1b6;
 }
-
 .modal-addmembers-buttons button.call:hover {
   background-color: #e4e4e4;
 }
@@ -371,13 +345,9 @@
   font-weight: bold;
   margin-bottom: 8px;
 }
-
 .modal-addmembers-sections ul {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
 }
-
 .modal-addmembers-sections li {
   list-style-type: none;
   margin-right: 24px;
@@ -393,15 +363,10 @@
   border: 1px solid #b1b1b1;
   border-radius: 4px;
   background-color: none;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   padding: 4px 0;
 }
-
 .findmembers-search-input .search-icon {
   margin-left: 16px;
   font-size: 12px;
@@ -417,15 +382,10 @@
 
 .addmembers-btn {
   margin: 24px 0;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   cursor: pointer;
 }
-
 .addmembers-btn .addmembers-btn-icon {
   padding: 8px;
   margin-right: 12px;
@@ -437,7 +397,6 @@
   font-size: 16px;
   cursor: pointer;
 }
-
 .addmembers-btn .addmembers-btn-text {
   font-size: 12px;
   font-weight: bold;
@@ -519,7 +478,7 @@
   resize: none;
   padding: 5px 5px;
   font-size: 1rem;
-  font-family: 'Lato', sans-serif;
+  font-family: "Lato", sans-serif;
   vertical-align: text-top;
   height: 100%;
   border: none;
@@ -592,7 +551,7 @@
 }
 
 .message-details-body {
-  font-family: 'Lato', sans-serif;
+  font-family: "Lato", sans-serif;
   color: #1d1c1d;
   padding: 5px 10px;
 }
@@ -608,7 +567,7 @@
   color: #1d1c1d;
   font-size: 1.2rem;
   font-weight: 900;
-  font-family: 'Lato', sans-serif;
+  font-family: "Lato", sans-serif;
   border-bottom: 1px solid #1d1c1d50;
 }
 .messages-container-header img {
@@ -625,7 +584,7 @@
   background-color: transparent;
   font-size: 1.2rem;
   font-weight: 700;
-  font-family: 'Lato', sans-serif;
+  font-family: "Lato", sans-serif;
 }
 
 .messages-search-user {
@@ -645,7 +604,7 @@
 .messages-searchbar {
   display: flex;
   align-items: center;
-  font-family: 'Lato', sans-serif !important;
+  font-family: "Lato", sans-serif !important;
   font-size: 1rem !important;
   padding: 0;
   display: block !important;
@@ -722,8 +681,7 @@
   cursor: pointer;
   z-index: 1;
 }
-.btn-rectangle-medium span.lock,
-.btn-rectangle-medium span.icon-addmembers {
+.btn-rectangle-medium span.lock, .btn-rectangle-medium span.icon-addmembers {
   padding-right: 4px;
   font-size: 16px;
 }
@@ -778,7 +736,7 @@ button.btn-channel-addUsers:hover span.addmembers:hover {
   grid-template-rows: 40px 1fr;
   grid-template-columns: 260px 1fr;
   color: #1d1c1d;
-  font-family: 'Lato', sans-serif;
+  font-family: "Lato", sans-serif;
 }
 
 .searchbar-container {
@@ -812,7 +770,7 @@ button.btn-channel-addUsers:hover span.addmembers:hover {
   color: #ffffff;
   font-size: 1.2rem;
   font-weight: 900;
-  font-family: 'Lato', sans-serif;
+  font-family: "Lato", sans-serif;
   background-color: transparent;
   border: none;
 }
@@ -963,6 +921,10 @@ button.btn-channel-addUsers:hover span.addmembers:hover {
 .logout-avatar-dropdown hr {
   margin: 8px 0;
 }
+.logout-avatar-dropdown a, .logout-avatar-dropdown a:visited {
+  text-decoration: none;
+  color: #1d1c1d;
+}
 
 .Error-page-container {
   width: 100vw;
@@ -1035,8 +997,7 @@ button.btn-channel-addUsers:hover span.addmembers:hover {
 .error-page-main-container {
   width: 100%;
   height: 72%;
-  background: url(https://a.slack-edge.com/80588/img/404/marrakesh-meadow-80.jpg)
-    fixed center;
+  background: url(https://a.slack-edge.com/80588/img/404/marrakesh-meadow-80.jpg) fixed center;
   background-size: cover;
   display: flex;
   justify-content: center;
@@ -1099,4 +1060,4 @@ button.btn-channel-addUsers:hover span.addmembers:hover {
 
 html {
   font-size: 15px;
-} /*# sourceMappingURL=App.css.map */
+}/*# sourceMappingURL=App.css.map */

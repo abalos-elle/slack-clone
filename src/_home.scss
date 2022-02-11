@@ -192,4 +192,9 @@
   hr {
     margin: 8px 0;
   }
+  
+  a, a:visited {
+    text-decoration: none;
+    color: $black;
+  }
 }
