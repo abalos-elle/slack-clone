@@ -1,9 +1,15 @@
 .searchUser-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   position: absolute;
   left: 30%;
 }
+
 .searchUser-container input {
   background-color: #5d3d5e;
   height: 2rem;
@@ -21,10 +27,13 @@
   height: auto;
   color: black;
 }
+
 .filteredUsers img {
   height: 1rem;
   display: inline;
 }
+
 .filteredUsers h3 {
   display: inline;
-}/*# sourceMappingURL=SearchBar.css.map */
+}
+/*# sourceMappingURL=SearchBar.css.map */

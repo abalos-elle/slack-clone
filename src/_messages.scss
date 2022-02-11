@@ -9,7 +9,7 @@
 
 .messages-scroll-container {
   padding: 0 20px;
-  height: 550px;
+  height: calc(100vh - 230px);
   display: flex;
   flex-direction: column-reverse;
   overflow-y: scroll;
@@ -18,7 +18,7 @@
 }
 
 .empty-message-container {
-  height: 500px;
+  height: calc(100vh - 280px);
   display: flex;
   flex-direction: column-reverse;
   overflow-y: scroll;
@@ -41,6 +41,7 @@
   border-radius: 10px;
   font-size: 1.2rem;
   & textarea {
+    resize: none;
     padding: 5px 5px;
     font-size: 1rem;
     font-family: $sans;
@@ -117,6 +118,8 @@
 }
 
 .message-details-body {
+  font-family: $sans;
+  color: $black;
   padding: 5px 10px;
 }
 
@@ -213,4 +216,13 @@
       outline: none;
     }
   }
+}
+
+.new-message {
+  color: $gray;
+  padding: 2em;
+  width: 100%;
+  text-align: center;
+  border-bottom: $border-thin-dark;
+  margin-bottom: 1em;
 }

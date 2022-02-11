@@ -8,7 +8,7 @@ import { getUserObject } from '../Users/getUserObject'
 import MessagesHeader from './MessagesHeader'
 
 const Messages = ({ displayHeader, receiverClass, receiverID }) => {
-  let {id, channelId} = useParams()
+  let { id, channelId } = useParams()
   const [messageDetails, setMessageDetails] = useState([])
   const [messageParams, setMessageParams] = useState({})
 
@@ -57,7 +57,7 @@ const Messages = ({ displayHeader, receiverClass, receiverID }) => {
       receiver_class: messageParams.receiver_class,
       body: input,
     })
-      .then((res) => console.log(res))
+      .then((res) => res)
       .catch((error) => console.log(error))
       .finally(() => {
         handleMessages()
@@ -82,12 +82,20 @@ const Messages = ({ displayHeader, receiverClass, receiverID }) => {
               )
             })
           : null}
+        <div className="new-message">
+          {`This is the beginning of your message history with ${
+            messageParams.uid ? `${messageParams.uid}` : 'this channel'
+          }`}
+        </div>
       </div>
       <SendMessage
         receiverName={
           messageParams.uid ? messageParams.uid : messageParams.receiverID
         }
         onClick={(input) => {
+          handleSendMessage(input)
+        }}
+        handleKeyPress={(input) => {
           handleSendMessage(input)
         }}
       />

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { IoSend } from 'react-icons/io5'
 
-const SendMessage = ({ onClick, receiverName = '' }) => {
+const SendMessage = ({ onClick, handleKeyPress, receiverName = '' }) => {
   const [input, setInput] = useState('')
 
   return (
@@ -13,11 +13,19 @@ const SendMessage = ({ onClick, receiverName = '' }) => {
             onChange={(e) => setInput(e.target.value)}
             type="text"
             placeholder={`Message ${receiverName}`}
+            title="message-input"
+            onKeyPress={(e) => {
+              if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault()
+                handleKeyPress(input)
+                setInput('')
+              }
+            }}
           ></textarea>
-          {/* <div className="send-message-buttons-container"> */}
           <button
             className={`send-message-button${input === '' ? '' : '-active'}`}
             type="button"
+            title="send-message-button"
             onClick={() => {
               onClick(input)
               setInput('')
@@ -25,7 +33,6 @@ const SendMessage = ({ onClick, receiverName = '' }) => {
           >
             <IoSend />
           </button>
-          {/* </div> */}
         </form>
       </div>
     </div>

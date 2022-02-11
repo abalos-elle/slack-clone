@@ -48,11 +48,18 @@ const CreateNewMessage = () => {
         {/* change selection behavior later */}
         <SearchBar
           className="messages-searchbar"
-          type='messages'
+          type="messages"
           // headers={userHeaders}
         />
       </div>
-      <div className="empty-message-container"></div>
+      {messageParams.uid !== undefined ? (
+        <div className="new-message empty-message-container">
+          {`This is the beginning of your message history  ${` with ${messageParams.uid}`}`}
+        </div>
+      ) : (
+        <div className=" empty-message-container"> </div>
+      )}
+
       <SendMessage
         receiverName={messageParams.uid}
         onClick={(input) => {
