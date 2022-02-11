@@ -58,7 +58,7 @@ const Home = () => {
         console.log(response)
         if (response.data.errors != null) {
           console.log(response.config.data)
-          setHandleRender(!handleRender)
+          // setHandleRender(!handleRender)
           return response
         }
       })
