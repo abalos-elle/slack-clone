@@ -1,15 +1,8 @@
 import React from 'react';
 import { TiWarningOutline } from "react-icons/ti";
-import { useNavigate } from 'react-router-dom';
 import Buttons from './../Buttons'
 
 function DefaultErrorPage() {
-  let navigate = useNavigate();
-  
-  const signIn = () => {
-    navigate('/login')
-  }
-
   return (
       <div className='Error-page-container'>
           <header className='error-page-header-container'>
@@ -25,8 +18,7 @@ function DefaultErrorPage() {
                 <li>Find your workspace</li>
               </ul>
             </div>
-            <div className='error-page-header-login'
-            onClick={signIn}>
+            <div className='error-page-header-login'>
               <Buttons>Sign In</Buttons>
             </div>
           </header>
