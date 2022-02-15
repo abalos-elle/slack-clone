@@ -12,7 +12,7 @@ export const channelCreate = async ({ name, user_ids }) => {
     
     try {
         const response = await axiosFetch.post(
-            '/api/v1/channels', 
+            '/api/v1/channels/', 
             {
                 name, 
                 user_ids },
@@ -34,7 +34,7 @@ export const channelCreate = async ({ name, user_ids }) => {
 export const channelsGet = async ({ token, client, expiry, uid }) => {
     try {
         const response = await axiosFetch.get(
-            '/api/v1/channels',
+            '/api/v1/channels/',
             {
                 headers: {
                     "access-token": token,
@@ -73,7 +73,7 @@ export const channelsOwnedGet = async ({ token, client, expiry, uid }) => {
 export const channelDetailsGet = async ({channelId, headers: {token, client, expiry, uid}}) => {
     try {
         const response = await axiosFetch.get(
-            `/api/v1/channels/${channelId}`,
+            `/api/v1/channels/${channelId}/`,
             {
                 headers: {
                     "access-token": token,
@@ -94,7 +94,7 @@ export const channelAddMember = async ({id, member_id}) => {
 
     try {
         const response = await axiosFetch.post(
-            `/api/v1/channel/add_member`,
+            `/api/v1/channel/add_member/`,
             {
                 id,
                 member_id
@@ -118,7 +118,7 @@ export const channelAddMember = async ({id, member_id}) => {
 // Connect to API to search for a particular user
 export const getUser = async ({id, headers: {token, client, expiry, uid}}) => {
     return axiosFetch.get(
-        `/api/v1/users`,
+        `/api/v1/users/`,
         {
             headers: {
                 "access-token": token,

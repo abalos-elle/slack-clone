@@ -20,7 +20,7 @@ export const userRegistration = async ({email, password, password_confirmation})
 // User Login Functionality
 export const userLogin = async ({email, password}) => {
     try {
-        const response = await baseUrl.post('/api/v1/auth/sign_in', {
+        const response = await baseUrl.post('/api/v1/auth/sign_in/', {
             email, password
         })
         return response;

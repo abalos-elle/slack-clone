@@ -25,7 +25,7 @@ export const getAllUsers = async () => {
 
 export const channelsGet = async () => {
   try {
-    const response = await axiosFetch.get("/api/v1/channels");
+    const response = await axiosFetch.get("/api/v1/channels/");
     return response;
   } catch (error) {
     return error;

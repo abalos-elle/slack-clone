@@ -16,7 +16,7 @@ const axiosFetch = headers
 
 export const sendMessage = async ({ receiver_id, receiver_class, body }) => {
   try {
-    const response = await axiosFetch.post('/api/v1/messages', {
+    const response = await axiosFetch.post('/api/v1/messages/', {
       receiver_id,
       receiver_class,
       body,
@@ -30,7 +30,7 @@ export const sendMessage = async ({ receiver_id, receiver_class, body }) => {
 
 export const getMessages = async ({ receiver_id, receiver_class }) => {
   try {
-    const response = await axiosFetch.get('api/v1/messages', {
+    const response = await axiosFetch.get('api/v1/messages/', {
       params: { receiver_class, receiver_id },
     })
     return response
